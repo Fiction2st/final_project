@@ -9,7 +9,7 @@
 		 <!-- 히카리 커넥션풀 빈 등록 -->
    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-      <property name="jdbcUrl" value="jdbc:oracle:thin:@210.211.253.215:1521:xe" />
+      <property name="jdbcUrl" value="jdbc:oracle:thin:@210.221.253.215:1521:xe" />
       <property name="username" value="g2" />
       <property name="password" value="oracle" />
    </bean>   
@@ -23,12 +23,13 @@
       <property name="dataSource" ref="ds"/>
       <property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"/>
    </bean>
+   
    <!-- 마이바티스 xml파일과 dao빈 연결  -->
-   <mybatis-spring:scan base-package="com.care.root.board.mapper"/>
-   <mybatis-spring:scan base-package="com.care.root.file.mapper"/>
-   <mybatis-spring:scan base-package="com.care.root.follow.mapper"/>
-   <mybatis-spring:scan base-package="com.care.root.member.mapper"/>
-   <mybatis-spring:scan base-package="com.care.root.reply.mapper"/>
+   <mybatis-spring:scan base-package="com.hntrip.root.board.mapper"/>
+   <mybatis-spring:scan base-package="com.hntrip.root.file.mapper"/>
+   <mybatis-spring:scan base-package="com.hntrip.root.follow.mapper"/>
+   <mybatis-spring:scan base-package="com.hntrip.root.member.mapper"/>
+   <mybatis-spring:scan base-package="com.hntrip.root.reply.mapper"/>
 		
 		
 </beans>
