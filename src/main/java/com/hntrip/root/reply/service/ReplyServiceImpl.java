@@ -1,5 +1,8 @@
 package com.hntrip.root.reply.service;
 
-public class ReplyServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class ReplyServiceImpl implements ReplyService{
 
 }
