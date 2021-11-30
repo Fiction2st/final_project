@@ -28,14 +28,12 @@ body {
 	padding-top: 50px;
 	padding-bottom: 200px;
 }
-
 .swiper-slide {
 	background-position: center;
 	background-size: cover;
 	width: 400px;
 	height: 400px;
 	background: #fff;
-	
 	/*
 	-webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0006);
 	*/
@@ -44,17 +42,32 @@ img {
 	width: 100%; height: 100%; border-radius: 10px;
 }
 
-
 .content {
 	width: 500px; height: 400px; color: white; background: black;
-	position: relative; left: -300px; top: -75px; z-index: 10;
-	padding: 25px; border: 1px solid gray;
+	position: relative; left: -270px; top: -75px; z-index: 10;
+	padding: 25px; box-shadow: 0 0 30px gray;
 }
-.hit, .return  {
+table { font-size: 15pt; }
+table tr td:nth-child(1) {
+	width: 35%; font-weight: bold; height: 30px;
+}
+table tr td:nth-child(2) {
+	width: 65%;  word-break: break-all;
+}
+table tr:last-child {
+	height: 210px; vertical-align: top;
+}
+table caption {
+	 height: 30px; margin-bottom: 20px;
+	 font-weight: bold; font-size: 18pt;
+}
+
+.btnGroup { text-align: center; }
+.btn {
 	color: black; font-size: 20px; font-weight: bold; background: white;
 	display: inline-block; padding: 10px 20px; border-radius: 20px;
 }
-.hit:hover, .return:hover {
+.btn:hover {
 	background: gray; color: white;
 }
 </style>
@@ -68,7 +81,7 @@ img {
 <body>
 	<div class="swiper">
 		<div class="swiper-wrapper">
-		<!-- div 파일 갯수만큼 if문 -->
+		<!-- div 파일 갯수만큼 for문 -->
 			<div class="swiper-slide">
 				<img alt="1" src="../resources/최근상품01.jpg">
 			</div>
@@ -91,22 +104,33 @@ img {
 		<!-- Add Pagination -->
 		<div class="swiper-pagination"></div>
 	</div>
-	 
+	
 	<div class="content">
-		<h1>Content</h1>
-		<br>
-		<h2>
-		date: 2020.11.30<br><br>
-		title: 3333<br><br>
-		content: akfjafijaessssssssssssss
-		<br><br><br><br><br><br><br><br><br>
-		</h2>
+		<table>
+			<caption>COUNTRY</caption>
+			<tr>
+				<td>CITY</td> <td>LA</td>
+			</tr>
+			<tr>
+				<td>DATE</td> <td>2020.11.30</td>
+			</tr>
+			<tr>
+				<td>TITLE</td> <td>3333</td>
+			</tr>
+			<tr>
+				<td>CONTENT</td>
+				<td>
+					akfjafijaessssssssssssss
+					fffffffffffffffffdddddddddddddddddsssssssswwwww
+				</td>
+			</tr>
+		</table>
 		
-		<a href="#" class="hit">
-			♥ 1
-		</a>
-		&nbsp;
-		<a href="${contextPath}/board/main" class="return">return</a>
+		<div class="btnGroup">
+			<a href="#" class="btn">♥ 1</a>&nbsp;&nbsp;&nbsp;
+			<a href="#" class="btn">comment</a>&nbsp;&nbsp;&nbsp;
+			<a href="${contextPath}/board/main" class="btn">return</a>
+		</div>
 	</div>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
@@ -116,7 +140,7 @@ img {
 		centeredSlides : true,
 		slidesPerView : 3,
 		coverflowEffect : {
-			rotate : 20,// 슬라이더 회전 각 : 클수록 슬라이딩시 회전이 커짐
+			rotate : 10,// 슬라이더 회전 각 : 클수록 슬라이딩시 회전이 커짐
 			stretch : 200,// 슬라이더간 거리(픽셀) : 클수록 슬라이더가 서로 많이 겹침
 			depth : 200,// 깊이 효과값 : 클수록 멀리있는 느낌이 강해짐
 			modifier : 1,// 효과 배수 : 위 숫자값들에 이 값을 곱하기 처리하여 효과를 강하게 처리함
