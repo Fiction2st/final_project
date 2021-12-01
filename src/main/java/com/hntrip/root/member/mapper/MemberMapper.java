@@ -1,5 +1,10 @@
 package com.hntrip.root.member.mapper;
 
-public interface MemberMapper {
+import java.util.Map;
 
+import com.hntrip.root.member.dto.MemberDTO;
+
+public interface MemberMapper {
+	public MemberDTO getMember(String id);
+	public void keepLogin(Map<String, Object> map); 
 }
