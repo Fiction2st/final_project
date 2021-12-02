@@ -14,7 +14,10 @@ public class BoardServiceImpl implements BoardService{
 	public void getMyData(Model model, int writeNo) {
 		model.addAttribute("myData", bm.getMyData(writeNo));
 	}
-	public String upHit(int writeNo) {
-		return bm.upHit(writeNo);
+	public void upHit(int writeNo) {
+		bm.upHit(writeNo);
+	}
+	public int nowHit(int writeNo) {
+		return bm.nowHit(writeNo);
 	}
 }

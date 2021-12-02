@@ -71,10 +71,23 @@ table caption {
 	background: gray; color: white;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-
 //파일 갯수 알아와서 색인번호로 넣기
 //좋아요
+function upHit(){
+	$.ajax({
+		url : "hit", type : "get",
+		success : function(data){
+			$("#hit").text(data)
+			console.log("성공")
+		},
+		error : function(){
+			alert("문제 발생!")
+		}
+	})
+}
+
 //댓글
 
 </script>
@@ -124,7 +137,7 @@ table caption {
 		</table>
 		<!-- 댓글 화면 추가 -->
 		<div class="btnGroup">
-			<a href="#" class="btn">♥ 1</a>&nbsp;&nbsp;&nbsp;
+			<a onclick="upHit()" id="hit" class="btn">♥ 1</a>&nbsp;&nbsp;&nbsp;
 			<a href="#" class="btn">comment</a>&nbsp;&nbsp;&nbsp;
 			<a href="${contextPath}/board/main" class="btn">return</a>
 		</div>
