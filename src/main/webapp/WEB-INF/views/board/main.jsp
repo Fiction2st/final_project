@@ -28,34 +28,16 @@ hr {
 	position: relative; top: -300px; left: 440px;
 	transform: rotate(135deg);
 }
-/*
-div.p {
-	position: relative; top: -300px; left: 440px;
-	width: 200px;
-}
-span {
-	color: red; font-weight: bold; font-size: 30pt;
-	position: absolute; bottom: 0;
-}
-div.tag {
-	width: 100px; height: 150px; color: white;
-	background-color: black;
-	position: absolute; left: 50px;
-}
-hr {
-	color: black; width: 100px; transform: rotate(135deg);
-	position: absolute; bottom: 50px;
-}
-*/
-#wrap2 {
+/*팝업창*/
+#wrap2 { /*배경 어둡게*/
 	display: none;
 	background-color: rgba(0, 0, 0, 0.4);
 	position: fixed;
-	z-index: 9;
+	z-index: 20;
 	margin: 0 auto; top: 0; left: 0; right: 0;
 	width: 100%; height: 100%;
 }
-#write {
+#write {/*팝업창*/
 	width: 600px; height: 500px; margin: 0 auto;
 	background: #EAEAEA; z-index: 10;
 	position: fixed;

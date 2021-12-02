@@ -75,6 +75,7 @@ table caption {
 
 //파일 갯수 알아와서 색인번호로 넣기
 //좋아요
+//댓글
 
 </script>
 </head>
@@ -107,25 +108,21 @@ table caption {
 	
 	<div class="content">
 		<table>
-			<caption>COUNTRY</caption>
+			<caption>${myData.country}</caption>
 			<tr>
-				<td>CITY</td> <td>LA</td>
+				<td>CITY</td> <td>${myData.city}</td>
 			</tr>
 			<tr>
-				<td>DATE</td> <td>2020.11.30</td>
+				<td>DATE</td> <td>${myData.saveDate}</td>
 			</tr>
 			<tr>
-				<td>TITLE</td> <td>3333</td>
+				<td>TITLE</td> <td>${myData.title}</td>
 			</tr>
 			<tr>
-				<td>CONTENT</td>
-				<td>
-					akfjafijaessssssssssssss
-					fffffffffffffffffdddddddddddddddddsssssssswwwww
-				</td>
+				<td>CONTENT</td> <td>${myData.content}</td>
 			</tr>
 		</table>
-		
+		<!-- 댓글 화면 추가 -->
 		<div class="btnGroup">
 			<a href="#" class="btn">♥ 1</a>&nbsp;&nbsp;&nbsp;
 			<a href="#" class="btn">comment</a>&nbsp;&nbsp;&nbsp;

@@ -1,5 +1,8 @@
 package com.hntrip.root.board.mapper;
 
-public interface BoardMapper {
+import com.hntrip.root.board.dto.BoardDTO;
 
+public interface BoardMapper {
+	public BoardDTO getMyData(int writeNo);
+	public String upHit(int writeNo);
 }
