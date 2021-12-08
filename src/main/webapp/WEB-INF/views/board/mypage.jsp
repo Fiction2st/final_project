@@ -47,20 +47,42 @@ img {
 	position: relative; left: -270px; top: -75px; z-index: 10;
 	padding: 25px; box-shadow: 0 0 30px gray;
 }
+.contentBox { width: 100%; height: 360px;}
 table { font-size: 15pt; }
 table tr td:nth-child(1) {
-	width: 35%; font-weight: bold; height: 30px;
+	width: 175px; font-weight: bold; height: 30px;
 }
 table tr td:nth-child(2) {
-	width: 65%;  word-break: break-all;
+	width: 325px;  word-break: break-all;
 }
 table tr:last-child {
 	height: 210px; vertical-align: top;
 }
-table caption {
+table.contentData caption {
 	 height: 30px; margin-bottom: 20px;
 	 font-weight: bold; font-size: 18pt;
 }
+
+div.comment { text-align: right; display: none; }
+div.comment a {
+	 padding: 3px 7px; color: white; font-size: 13pt;
+}
+div.comment a:hover {
+	 background: gray;
+}
+.commentGroup { width: 100%; height: 320px; overflow: auto; }
+.commentGroup::-webkit-scrollbar {
+	width: 5px; /*스크롤바의 너비*/
+}
+.commentGroup::-webkit-scrollbar-thumb {
+	background-color: gray; /*스크롤바의 색상*/
+	border-radius: 10px;
+}
+.commentGroup::-webkit-scrollbar-track {
+	background-color: black; /*스크롤바 트랙 색상*/
+}
+table.commentData { text-align: center; }
+table.commentData tr td:nth-child(2) { text-align: left; }
 
 .btnGroup { text-align: center; }
 .btn {
@@ -70,6 +92,19 @@ table caption {
 .btn:hover {
 	background: gray; color: white;
 }
+.commentWrite { display: none; }
+.commentWrite input[type="text"] {
+	border: none; border-bottom: 1px solid white;
+	background: black; color: white; width: 300px; height: 30px;
+}
+.commentWrite a {
+	background: white; color: black; padding: 12px 15px;
+	border-radius: 10px; font-weight: bold;
+}
+.commentWrite a:hover {
+	background: gray; color: white;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -79,7 +114,7 @@ function upHit(){
 	$.ajax({
 		url : "hit", type : "get",
 		success : function(data){
-			$("#hit").text(data)
+			$("#hit").text("♥ "+data)
 			console.log("성공")
 		},
 		error : function(){
@@ -87,9 +122,62 @@ function upHit(){
 		}
 	})
 }
-
 //댓글
-
+function commentList(){
+	$.ajax({
+		url : "replyData",
+		type : "GET",
+		dataType : "json",
+		success : function(reply) {
+			console.log(reply)
+			let html = ""
+			reply.forEach(function(data) {
+				html += "<tr><td>" + data.id + "</td>";
+				html += "<td>" + data.content + "</td></tr>"
+			})
+			console.log(html)
+			$(".commentData").html(html)
+		},
+		error : function() {
+			alert('데이터를 가져올 수 없습니다')
+		}
+	})
+	$(".contentData").hide();
+	$(".btnGroup").hide();
+	$(".comment").show();
+	$(".commentWrite").show();
+}
+function commentClose() {
+	$(".contentData").show();
+	$(".btnGroup").show();
+	$(".comment").hide();
+	$(".commentWrite").hide();
+}
+function commentAdd(){
+	var no = 41;
+	var id = 'jjj';
+	var cmt = $("#commentText").val();
+	var form = {writeNo : no, id : id, content : cmt}
+	console.log(form)
+	$.ajax({
+		url : "replyAdd", type : "POST",
+		data : JSON.stringify(form),
+		dataType : 'json',
+		contentType : "application/json; charset=utf-8",
+		success : function(result){
+			console.log(result);
+			if(result == true){
+				commentList();
+			}else {
+				alert('댓글은 100byte까지만 등록 가능합니다.')
+			}
+			$("#commentText").val("");
+		},
+		error : function(){
+			alert('댓글 등록에 실패하였습니다.');
+		}
+	})
+}
 </script>
 </head>
 <body>
@@ -120,26 +208,40 @@ function upHit(){
 	</div>
 	
 	<div class="content">
-		<table>
-			<caption>${myData.country}</caption>
-			<tr>
-				<td>CITY</td> <td>${myData.city}</td>
-			</tr>
-			<tr>
-				<td>DATE</td> <td>${myData.saveDate}</td>
-			</tr>
-			<tr>
-				<td>TITLE</td> <td>${myData.title}</td>
-			</tr>
-			<tr>
-				<td>CONTENT</td> <td>${myData.content}</td>
-			</tr>
-		</table>
-		<!-- 댓글 화면 추가 -->
+		<div class="contentBox">
+			<table class="contentData">
+				<caption>${myData.country}</caption>
+				<tr>
+					<td>CITY</td> <td>${myData.city}</td>
+				</tr>
+				<tr>
+					<td>DATE</td> <td>${myData.saveDate}</td>
+				</tr>
+				<tr>
+					<td>TITLE</td> <td>${myData.title}</td>
+				</tr>
+				<tr>
+					<td>CONTENT</td> <td>${myData.content}</td>
+				</tr>
+			</table>
+			<!-- 댓글 화면 -->
+			<div class="comment">
+				<a onclick='commentClose()' href='javascript:void(0)'>X</a>
+				<div class="commentGroup">
+					<table class="commentData">
+					</table>
+				</div>
+			</div>
+		</div>
+		
 		<div class="btnGroup">
-			<a onclick="upHit()" id="hit" class="btn">♥ 1</a>&nbsp;&nbsp;&nbsp;
-			<a href="#" class="btn">comment</a>&nbsp;&nbsp;&nbsp;
+			<a onclick="upHit()" href="javascript:void(0)" id="hit" class="btn">♥ ${myData.hit}</a>&nbsp;&nbsp;&nbsp;
+			<a onclick="commentList()" href="javascript:void(0)" class="btn">comment</a>&nbsp;&nbsp;&nbsp;
 			<a href="${contextPath}/board/main" class="btn">return</a>
+		</div>
+		<div class="commentWrite">
+			<input type="text" id="commentText">&nbsp;&nbsp;
+			<a onclick="commentAdd()" href="javascript:void(0)">등록</a>
 		</div>
 	</div>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

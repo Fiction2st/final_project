@@ -26,12 +26,10 @@ public class BoardController {
 		return "board/mypage";
 	}
 	@GetMapping("hit")
-	//@ResponseBody
-	public void hit() {
+	@ResponseBody
+	public String hit() {
 		int writeNo = 41;
 		//bs.upHit(writeNo);
-		System.out.println(bs.nowHit(writeNo));
-		
-		//return "";
+		return bs.upHit(writeNo)+"";
 	}
 }
