@@ -49,7 +49,7 @@ nav ul li a { text-decoration: none; color: black; opacity: 0.6; }
 	<div class="back-img">
 		<nav>
 			<ul>
-				<li><a href="${contextPath }/root/index">HOME</a></li>
+				<li><a href="${contextPath }/index">HOME</a></li>
 	
 				<li>
 					<c:choose>

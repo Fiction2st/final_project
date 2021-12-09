@@ -20,4 +20,7 @@
 								limit_date = #{limitDate}
 							where id = #{id}
 	</update>
+	<insert id="kakaoLogin">
+		insert into membership(no,id) values(membership_seq.nextval,#{id})
+	</insert>
 </mapper>

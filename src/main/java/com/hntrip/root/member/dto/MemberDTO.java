@@ -1,11 +1,15 @@
 package com.hntrip.root.member.dto;
 
+import java.sql.Date;
+
 public class MemberDTO {
 	private int no;
 	private String id;
 	private String pwd;
 	private String name;
 	private String email;
+	private String sessionId;
+	private Date limitDate;
 	public int getNo() {
 		return no;
 	}
@@ -35,6 +39,18 @@ public class MemberDTO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+	public Date getLimitDate() {
+		return limitDate;
+	}
+	public void setLimitDate(Date limitDate) {
+		this.limitDate = limitDate;
 	}
 	
 }

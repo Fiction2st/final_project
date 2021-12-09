@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.hntrip.root.common.session.MemberSessionName;
 import com.hntrip.root.member.dto.MemberDTO;
@@ -38,8 +39,9 @@ public class MemberServiceImpl implements MemberService{
 			if(encoder.matches(pwd, dto.getPwd())||pwd.equals(dto.getPwd())){
 				return 1;
 			}
+			return 2; // 비번 오류
 		}
-		return 0;
+		return 3; // id 없음
 	}
 	public void autoLogin(HttpSession session, HttpServletResponse response, String id) {
 		
@@ -58,17 +60,21 @@ public class MemberServiceImpl implements MemberService{
 		System.out.println("id : "+ id);
 		System.out.println("sessionId : "+ session.getId());
 	}
-	public void keepLogin(String sessionId, Date limitDate, String id) {
+	public void keepLogin(String session, Date limitDate, String id) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("sessionId", sessionId);
+		map.put("sessionId", session);
 		map.put("limitDate", limitDate);
 		map.put("id", id);
 		mapper.keepLogin(map);
 
-		System.out.println(map.get("sessionId"));
-		System.out.println(map.get("limitDate"));
-		System.out.println(map.get("id"));
 	}
+	public void kakaoLogin(String id) {
+		MemberDTO dto =	mapper.getMember(id);
+		if(dto == null) {
+			mapper.kakaoLogin(id);
+		}
+	}
+	
 	public void logout(Cookie loginCookie, HttpSession session, HttpServletResponse response) {
 		if(loginCookie!=null) {	
 			loginCookie.setMaxAge(0);
