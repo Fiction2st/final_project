@@ -1,5 +1,8 @@
 package com.hntrip.root.follow.service;
 
-public class FollowServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class FollowServiceImpl implements FollowService{
 
 }

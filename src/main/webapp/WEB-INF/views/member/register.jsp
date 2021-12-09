@@ -64,6 +64,7 @@
 		}
 	}
 	function chkPW(){
+		console.log("chkDupId값 : "+ $("#chkDupId").val())
 		var pw = $("#pwd").val();
 		var num = pw.search(/[0-9]/g);
 		var eng = pw.search(/[a-z]/ig);
