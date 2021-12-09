@@ -254,7 +254,7 @@
 			</tr> 
 		</table>
 		<input type="button" onclick="chk_form()" value="회원가입">
-		<input type="button" onclick="location.href='#'" value="취소">
+		<input type="button" onclick="location.href='${contextPath}/index'" value="취소">
 	</form>
 </div>
 </body>
