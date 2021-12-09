@@ -53,7 +53,4 @@ public class MemberDTO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
-	
-	
 }
