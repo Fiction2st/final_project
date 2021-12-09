@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<<<<<<< HEAD
  <mapper namespace="com.hntrip.root.member.mapper.MemberMapper">
  	<resultMap id="member" type="com.hntrip.root.member.dto.MemberDTO">
  		<id property = "id" column = "id"/>
@@ -21,16 +20,6 @@
  	<select id = "chkId" resultMap="member">
  		select * from membership where id = #{id}
  	</select>
- </mapper>
-=======
-<mapper namespace="com.hntrip.root.member.mapper.MemberMapper">
-	<resultMap type="com.hntrip.root.member.dto.MemberDTO" id="member">
-		<id property="id" column="id"/>
-		<result property="pwd" column="pwd"/>
-		<result property="name" column="name"/>
-		<result property="email" column="email"/>
-		<result property="no" column="no"/>
-	</resultMap> 
 	
 	<select id="getMember" resultMap="member">
 		select * from membership where id = #{id}
@@ -43,5 +32,5 @@
 	<insert id="kakaoLogin">
 		insert into membership(no,id) values(membership_seq.nextval,#{id})
 	</insert>
-</mapper>
->>>>>>> nmrnkd
+
+ </mapper>

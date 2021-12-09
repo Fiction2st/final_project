@@ -1,12 +1,10 @@
 package com.hntrip.root.member.service;
-
-<<<<<<< HEAD
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-=======
+
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -16,8 +14,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> nmrnkd
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -26,26 +22,16 @@ import com.hntrip.root.common.session.MemberSessionName;
 import com.hntrip.root.member.dto.MemberDTO;
 import com.hntrip.root.member.mapper.MemberMapper;
 
-import com.hntrip.root.member.dto.MemberDTO;
-import com.hntrip.root.member.mapper.MemberMapper;
-
 @Service
 public class MemberServiceImpl implements MemberService{
-<<<<<<< HEAD
+
 	@Autowired private MemberMapper mapper;
 	@Autowired JavaMailSender mailSender;
 	BCryptPasswordEncoder encoder;
-	
-=======
-	@Autowired MemberMapper mapper;
 	MemberSessionName msn;
-	BCryptPasswordEncoder encoder;
->>>>>>> nmrnkd
 	public MemberServiceImpl() {
 		encoder = new BCryptPasswordEncoder();
 	}
-	
-<<<<<<< HEAD
 	@Override
 	public int register(MemberDTO member) {
 		String securePw = encoder.encode(member.getPwd());
@@ -55,16 +41,13 @@ public class MemberServiceImpl implements MemberService{
 		}catch(Exception e){
 			e.printStackTrace();
 			return 0;
-		}
-		
+		}	
 	}
-
 	@Override
 	public MemberDTO chkId(String id) {
 		System.out.println("전달된 id값 : " + id);
 		return mapper.chkId(id);
 	}
-
 	@Override
 	public void sendMail(String to, String subject, String body) {
 		MimeMessage message = mailSender.createMimeMessage();
@@ -78,8 +61,7 @@ public class MemberServiceImpl implements MemberService{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-=======
+	}
 	public int loginCheck(String id, String pwd) {
 		MemberDTO dto = new MemberDTO();
 		try {
@@ -127,7 +109,6 @@ public class MemberServiceImpl implements MemberService{
 			mapper.kakaoLogin(id);
 		}
 	}
-	
 	public void logout(Cookie loginCookie, HttpSession session, HttpServletResponse response) {
 		if(loginCookie!=null) {	
 			loginCookie.setMaxAge(0);
@@ -137,6 +118,5 @@ public class MemberServiceImpl implements MemberService{
 					(String)session.getAttribute(msn.LOGIN));	
 		}
 		session.invalidate();
->>>>>>> nmrnkd
 	}
 }

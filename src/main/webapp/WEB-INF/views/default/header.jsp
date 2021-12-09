@@ -32,7 +32,7 @@ nav ul li a { text-decoration: none; color: black; opacity: 0.6;}
 			</li>
 				
 			<li>
-				<a href="${contextPath }/">JOIN US</a>
+				<a href="${contextPath }/member/register_form">JOIN US</a>
 			</li> 
 		</ul>		
 	</nav>	

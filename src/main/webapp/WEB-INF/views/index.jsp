@@ -1,25 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<<<<<< HEAD
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-=======
-<c:set var="contextPath" value="${pageContext.request.contextPath }"/>   
->>>>>>> nmrnkd
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
-<title>Insert title here</title>
-</head>
-<body>
-	<h1> index 페이지 입니다.</h1>
-	<h1> 회원가입 후 나오는 메인 페이지 입니다. </h1>
-	
-	<a href="${contextPath}/member/register_form">회원가입 페이지</a>
-=======
-<title></title>
+<title>HAVE A NICE TRIP!</title>
 <style type="text/css">
 .wrap{
 	width: 100%;
@@ -54,7 +41,6 @@ nav { display: flex; }
 nav ul { list-style: none; display: flex; justify-content: flex-end; }
 nav ul li { margin: 0 3px; padding: 10px 10px; }
 nav ul li a { text-decoration: none; color: black; opacity: 0.6; }
-
 </style>
 </head>
 <body>
@@ -75,7 +61,7 @@ nav ul li a { text-decoration: none; color: black; opacity: 0.6; }
 					</c:choose>
 				</li>
 				
-			<li><a href="${contextPath }/">JOIN US</a></li>
+			<li><a href="${contextPath }/member/register_form">JOIN US</a></li>
 			</ul>		
 		</nav>	
 		<section class="cnt">
@@ -91,6 +77,5 @@ nav ul li a { text-decoration: none; color: black; opacity: 0.6; }
 		</section>
 	</div>
 </div>
->>>>>>> nmrnkd
 </body>
 </html>
