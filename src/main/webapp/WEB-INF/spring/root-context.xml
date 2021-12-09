@@ -12,6 +12,11 @@
       <property name="jdbcUrl" value="jdbc:oracle:thin:@210.221.253.215:1521:xe" />
       <property name="username" value="g2" />
       <property name="password" value="oracle" />
+      
+<!-- 
+      <property name="username" value="g2" />
+      <property name="password" value="oracle" />
+-->
    </bean>   
    <!-- 히카리 데이터소스 빈 등록 -->   
    <bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
