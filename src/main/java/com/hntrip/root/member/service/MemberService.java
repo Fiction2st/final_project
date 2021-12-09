@@ -1,5 +1,9 @@
 package com.hntrip.root.member.service;
 
-public interface MemberService {
+import com.hntrip.root.member.dto.MemberDTO;
 
+public interface MemberService {
+	public int register(MemberDTO member);
+	public MemberDTO chkId(String id);
+	public void sendMail(String to, String subject, String body);
 }

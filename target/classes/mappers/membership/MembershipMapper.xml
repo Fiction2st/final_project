@@ -4,5 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.hntrip.root.member.mapper.MemberMapper">
-  
-  </mapper>
+ 	<resultMap id="member" type="com.hntrip.root.member.dto.MemberDTO">
+ 		<id property = "id" column = "id"/>
+ 		<result property ="pwd" column = "pwd"/>
+ 		<result property ="name" column ="name"/>
+ 		<result property="email" column ="email"/>
+ 		<result property="session_id" column ="session_id"/>
+ 		<result property="limit_date" column ="limit_date"/>
+ 	</resultMap> 
+ 	
+ 	<insert id="register">
+ 		insert into membership(no,id,pwd,name,email) values(membership_seq.nextval,#{id},#{pwd},#{name},#{email})
+ 	</insert>
+ 	
+ 	<select id = "chkId" resultMap="member">
+ 		select * from membership where id = #{id}
+ 	</select>
+ </mapper>
