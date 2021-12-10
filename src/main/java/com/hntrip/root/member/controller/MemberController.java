@@ -1,5 +1,6 @@
 package com.hntrip.root.member.controller;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -25,6 +27,7 @@ import com.hntrip.root.member.service.MemberService;
 @RequestMapping("member")
 public class MemberController implements MemberSessionName{
 	@Autowired MemberService ms;
+	
 	@GetMapping("login")
 	public String login() {
 		return "member/login";
@@ -78,4 +81,9 @@ public class MemberController implements MemberSessionName{
 		rs.addAttribute("id",id);
 		return "redirect:successLogin";
 	}
+	@GetMapping("callback")
+	public String naverLogin() {
+		return "member/callback";
+	}
+	
 }
