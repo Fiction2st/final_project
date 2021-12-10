@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.hntrip.root.board.dto.BoardDTO;
 import com.hntrip.root.board.mapper.BoardMapper;
 
 @Service
@@ -16,7 +15,11 @@ public class BoardServiceImpl implements BoardService{
 	}
 	public int upHit(int writeNo) {
 		bm.upHit(writeNo);
-		BoardDTO dto = bm.getMyData(writeNo);
-		return dto.getHit();
+		//System.out.println("hit : "+ bm.nowHit(writeNo).getHit());
+		return bm.nowHit(writeNo).getHit();
+	}
+	public int downHit(int writeNo) {
+		bm.downHit(writeNo);
+		return bm.nowHit(writeNo).getHit();
 	}
 }

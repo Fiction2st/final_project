@@ -20,7 +20,10 @@
 	<update id="upHit">
 		update board set hit = hit + 1 where write_no = #{writeNo}
 	</update>
-	<!-- select id="nowHit" resultMap="board">
+	<update id="downHit">
+		update board set hit = hit - 1 where write_no = #{writeNo}
+	</update>
+	<select id="nowHit" resultMap="board">
 		select hit from board where write_no = #{writeNo}
-	</select -->
+	</select>
 </mapper>

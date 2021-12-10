@@ -32,7 +32,6 @@ public class BoardController {
 	@ResponseBody
 	public String hit() {
 		int writeNo = 41;
-		//bs.upHit(writeNo);
 		return bs.upHit(writeNo)+"";
 	}
 }
