@@ -33,7 +33,6 @@ body {
 	background-size: cover;
 	width: 400px;
 	height: 400px;
-	background: #fff;
 	/*
 	-webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0006);
 	*/
@@ -53,9 +52,9 @@ table tr td:nth-child(1) {
 	width: 175px; font-weight: bold; height: 30px;
 }
 table tr td:nth-child(2) {
-	width: 325px;  word-break: break-all;
+	width: 325px; word-break: break-all;
 }
-table tr:last-child {
+table.contentData tr:last-child {
 	height: 210px; vertical-align: top;
 }
 table.contentData caption {
@@ -82,6 +81,9 @@ div.comment a:hover {
 	background-color: black; /*스크롤바 트랙 색상*/
 }
 table.commentData { text-align: center; }
+/*table.commentData tr td {
+	border-bottom: 1px solid #6F6F6F; line-height: 30px;
+}*/
 table.commentData tr td:nth-child(2) { text-align: left; }
 
 .btnGroup { text-align: center; }
@@ -96,6 +98,7 @@ table.commentData tr td:nth-child(2) { text-align: left; }
 .commentWrite input[type="text"] {
 	border: none; border-bottom: 1px solid white;
 	background: black; color: white; width: 300px; height: 30px;
+	word-break: break-all;
 }
 .commentWrite a {
 	background: white; color: black; padding: 12px 15px;
@@ -129,13 +132,15 @@ function commentList(){
 		type : "GET",
 		dataType : "json",
 		success : function(reply) {
-			console.log(reply)
+			//console.log(reply)
 			let html = ""
 			reply.forEach(function(data) {
 				html += "<tr><td>" + data.id + "</td>";
 				html += "<td>" + data.content + "</td></tr>"
+				//html += "<tr><td><b>" + data.id + "</b><br>";
+				//html += "<small>" + data.content + "</small></td></tr>"
 			})
-			console.log(html)
+			//console.log(html)
 			$(".commentData").html(html)
 		},
 		error : function() {
@@ -184,24 +189,11 @@ function commentAdd(){
 	<div class="swiper">
 		<div class="swiper-wrapper">
 		<!-- div 파일 갯수만큼 for문 -->
-			<div class="swiper-slide">
-				<img alt="1" src="../resources/최근상품01.jpg">
-			</div>
-			<div class="swiper-slide">
-				<img alt="2" src="../resources/최근상품02.jpg">
-			</div>
-			<div class="swiper-slide">
-				<img alt="3" src="../resources/최근상품03.jpg">
-			</div>
-			<div class="swiper-slide">
-				<img alt="4" src="../resources/최근상품04.jpg">
-			</div>
-			<div class="swiper-slide">
-				<img alt="5" src="../resources/최근상품05.jpg">
-			</div>
-			<div class="swiper-slide">
-				<img alt="6" src="../resources/최근상품06.jpg">
-			</div>
+			<c:forEach var="img" items="${myImg}">
+				<div class="swiper-slide">
+					<img src="${contextPath}/board/download?fileName=${img.fileName}">
+				</div>
+			</c:forEach>
 		</div>
 		<!-- Add Pagination -->
 		<div class="swiper-pagination"></div>
@@ -259,7 +251,7 @@ function commentAdd(){
 			slideShadows : true,
 		},
 		//loop : true,
-		initialSlide: 5, //슬라이더 시작 위치, 색인 번호
+		initialSlide: ${myImg.size()-1}, //슬라이더 시작 위치, 색인 번호
 	});
 	//swiper 현재 위치 알려줌
 	swiper.on('transitionEnd', function() {

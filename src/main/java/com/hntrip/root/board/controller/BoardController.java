@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hntrip.root.board.service.BoardService;
+import com.hntrip.root.file.service.FileService;
 
 @Controller
 @RequestMapping("board")
 public class BoardController {
 	@Autowired BoardService bs;
+	@Autowired FileService fs;
 	
 	@GetMapping("main")
 	public String main() {
@@ -23,6 +25,7 @@ public class BoardController {
 		//글번호, 나중에 param으로 받기
 		int writeNo = 41;
 		bs.getMyData(model, writeNo);
+		fs.getMyImg(model, writeNo);
 		return "board/mypage";
 	}
 	@GetMapping("hit")
