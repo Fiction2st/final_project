@@ -1,29 +1,117 @@
 package com.hntrip.root.member.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.hntrip.root.common.session.MemberSessionName;
 import com.hntrip.root.member.dto.MemberDTO;
 import com.hntrip.root.member.service.MemberService;
-import com.hntrip.root.common.session.MemberSessionName;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
 
 
 @Controller
 @RequestMapping("member")
 public class MemberController implements MemberSessionName{
 	@Autowired MemberService ms;
+	
+	@RequestMapping("/naverLogin")
+	public String naverLogin() {
+		return "member/naverLogin";
+	}
+	@RequestMapping("/naverCallback")
+	public String naverCallback(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+	    String clientId = "gOu7UJfHmcwmD8ic4Ar5";//애플리케이션 클라이언트 아이디값";
+	    String clientSecret = "cwGnDVvG0_";//애플리케이션 클라이언트 시크릿값";
+	    String code = request.getParameter("code");
+	    String state = request.getParameter("state");
+	    String redirectURI = URLEncoder.encode("http://localhost:8085/root/member/naverCallback", "UTF-8");
+	    String apiURL;
+	    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
+	    apiURL += "client_id=" + clientId;
+	    apiURL += "&client_secret=" + clientSecret;
+	    apiURL += "&redirect_uri=" + redirectURI;
+	    apiURL += "&code=" + code;
+	    apiURL += "&state=" + state;
+
+	    System.out.println("apiURL="+apiURL);
+	    try {
+	      URL url = new URL(apiURL);
+	      HttpURLConnection con = (HttpURLConnection)url.openConnection();
+	      con.setRequestMethod("GET");
+	      int responseCode = con.getResponseCode();
+	      BufferedReader br;
+	      System.out.print("responseCode="+responseCode);
+	      if(responseCode==200) { // 정상 호출
+	        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	      } else {  // 에러 발생
+	        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+	      }
+	      String inputLine;
+	      StringBuffer res = new StringBuffer();
+	      while ((inputLine = br.readLine()) != null) {
+	        res.append(inputLine);
+	      }
+	      br.close();
+	      if(responseCode==200) {
+	    	  System.out.println("res 코드 : " + res.toString());
+	    	  String token = "AAAAOmB0IpAkKK-mENU29XnpgYN8hPcn0qMz9506vqhkR7Ej7KaCu2NK4VB_w99GrW4xHubWleiLC56434O-WrfSMYw"; // 네이버 로그인 접근 토큰;
+	          String header = "Bearer " + token; // Bearer 다음에 공백 추가
+
+	          String apiURL1 = "https://openapi.naver.com/v1/nid/me";
+	         
+	          Map<String, String> requestHeaders = new HashMap<>();
+	          requestHeaders.put("Authorization", header);
+	          String responseBody = ms.get(apiURL1,requestHeaders);
+	          System.out.println(responseBody);
+	          
+	          JSONParser parsing = new JSONParser();
+	          Object obj = parsing.parse(responseBody);
+	          JSONObject jsonObj = (JSONObject)obj;
+	          JSONObject resObj = (JSONObject)jsonObj.get("response");
+	          System.out.println("resObj : " + resObj);
+	          
+	          MemberDTO dto = new MemberDTO();
+	          String id = (String)resObj.get("id");
+	          id = id.substring(0,5) + id.substring(12,17) + id.substring(25,30);
+	          System.out.println("id값 : " + id);
+	          String email = (String)resObj.get("email");
+	          System.out.println("e메일 값 : " + email);
+	          dto.setId(id); dto.setEmail(email);
+	          ms.naverLogin(dto);
+	    	  return "/index";
+	      }
+	    } catch (Exception e) {
+	    	System.out.println("정보가져오기 실패!!");
+	    	System.out.println(e);
+	      return "/member/login";
+	    }
+	    return "/index";
+	}
 	
 	@RequestMapping("/index")
 	public String index() {
