@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MyPage</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 <style type="text/css">
 *{
@@ -94,6 +94,7 @@ table.commentData tr td:nth-child(2) { text-align: left; }
 .btn:hover {
 	background: gray; color: white;
 }
+.onhit { background: gray; color: white; }
 .commentWrite { display: none; }
 .commentWrite input[type="text"] {
 	border: none; border-bottom: 1px solid white;
@@ -107,15 +108,15 @@ table.commentData tr td:nth-child(2) { text-align: left; }
 .commentWrite a:hover {
 	background: gray; color: white;
 }
-
 </style>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-//파일 갯수 알아와서 색인번호로 넣기
 //좋아요
-function upHit(){
+function hit(){
 	$.ajax({
-		url : "hit", type : "get",
+		url : "hit",
+		type : "get",
 		success : function(data){
 			$("#hit").text("♥ "+data)
 			console.log("성공")
@@ -125,7 +126,7 @@ function upHit(){
 		}
 	})
 }
-//댓글
+//댓글 리스트
 function commentList(){
 	$.ajax({
 		url : "replyData",
@@ -152,12 +153,14 @@ function commentList(){
 	$(".comment").show();
 	$(".commentWrite").show();
 }
+//댓글 창 닫기
 function commentClose() {
 	$(".contentData").show();
 	$(".btnGroup").show();
 	$(".comment").hide();
 	$(".commentWrite").hide();
 }
+//댓글 등록
 function commentAdd(){
 	var no = 41;
 	var id = 'jjj';
@@ -227,7 +230,13 @@ function commentAdd(){
 		</div>
 		
 		<div class="btnGroup">
-			<a onclick="upHit()" href="javascript:void(0)" id="hit" class="btn">♥ ${myData.hit}</a>&nbsp;&nbsp;&nbsp;
+			<c:if test="${myHit == false}">
+				<a onclick="hit()" href="javascript:void(0)" id="hit" class="btn">♥ ${myData.hit}</a>
+			</c:if>
+			<c:if test="${myHit == true}">
+				<a onclick="hit()" href="javascript:void(0)" id="hit" class="btn onhit">♥ ${myData.hit}</a>
+			</c:if>
+			&nbsp;&nbsp;&nbsp;
 			<a onclick="commentList()" href="javascript:void(0)" class="btn">comment</a>&nbsp;&nbsp;&nbsp;
 			<a href="${contextPath}/board/main" class="btn">return</a>
 		</div>

@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hntrip.root.board.service.BoardService;
 import com.hntrip.root.file.service.FileService;
+import com.hntrip.root.hit.service.HitService;
 
 @Controller
 @RequestMapping("board")
 public class BoardController {
 	@Autowired BoardService bs;
 	@Autowired FileService fs;
+	@Autowired HitService hs;
 	
 	@GetMapping("main")
 	public String main() {
@@ -26,12 +28,21 @@ public class BoardController {
 		int writeNo = 41;
 		bs.getMyData(model, writeNo);
 		fs.getMyImg(model, writeNo);
+		hs.getMyHit(model, writeNo);
 		return "board/mypage";
 	}
 	@GetMapping("hit")
 	@ResponseBody
 	public String hit() {
 		int writeNo = 41;
+		System.out.println("Hit");
 		return bs.upHit(writeNo)+"";
+	}
+	@GetMapping("downHit")
+	@ResponseBody
+	public String downHit() {
+		int writeNo = 41;
+		System.out.println("downHit");
+		return bs.downHit(writeNo)+"";
 	}
 }
