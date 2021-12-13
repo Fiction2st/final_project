@@ -9,4 +9,5 @@ public interface MemberMapper {
 	public MemberDTO getMember(String id);
 	public void keepLogin(Map<String, Object> map); 
 	public void kakaoLogin(String id);
+	public int naverLogin(MemberDTO member);
 }
