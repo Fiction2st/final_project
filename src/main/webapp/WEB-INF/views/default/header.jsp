@@ -8,10 +8,14 @@
 <meta charset="UTF-8">
 <title></title>
 <style type="text/css">
-nav { display: flex; position: fixed;}
+*{margin : 0;}
+nav { display: flex; position: fixed;  z-index: 10;}
 nav ul { list-style: none; display: flex; justify-content: flex-end; }
 nav ul li { margin: 0 3px; padding: 10px 10px; }
-nav ul li a { text-decoration: none; color: black; opacity: 0.6;}
+nav ul li a { text-decoration: none; color: white;}
+.search {
+	align: center;
+}
 </style>
 </head>
 <body>
@@ -30,12 +34,22 @@ nav ul li a { text-decoration: none; color: black; opacity: 0.6;}
 					</c:otherwise>
 				</c:choose>
 			</li>
-				
+						
 			<li>
 				<a href="${contextPath }/">JOIN US</a>
 			</li> 
+			
+			<li class="search">
+				<c:choose>
+					<c:when test="${loginUser != null }">
+						<input type="text" id="search" width="40">
+						<a href="${contextPath }/board/search">
+						<img src="https://img.lovepik.com/original_origin_pic/19/01/07/f4d522e5616a84704ba33c88addec54f.png_wh300.png" width="20"/>
+						</a>
+					</c:when>
+				</c:choose>
+			</li>
 		</ul>		
 	</nav>	
-
 </body>
 </html>

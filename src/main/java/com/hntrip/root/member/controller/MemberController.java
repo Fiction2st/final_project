@@ -1,9 +1,5 @@
 package com.hntrip.root.member.controller;
 
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,9 +11,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hntrip.root.common.session.MemberSessionName;
@@ -80,10 +74,6 @@ public class MemberController implements MemberSessionName{
 		ms.kakaoLogin(id);
 		rs.addAttribute("id",id);
 		return "redirect:successLogin";
-	}
-	@GetMapping("callback")
-	public String naverLogin() {
-		return "member/callback";
 	}
 	
 }
