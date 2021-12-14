@@ -174,11 +174,11 @@ public class MemberServiceImpl implements MemberService{
 	    }
 		@Override
 		public int naverLogin(MemberDTO dto) {
-			try {
+			MemberDTO chkDTO = mapper.getMember(dto.getId());
+			if(chkDTO == null) {
 				return mapper.naverLogin(dto);
-			}catch(Exception e) {
-				e.printStackTrace();
-				return 0;
+			}else {
+				return 0;	// 기존에 네이버로 로그인 및 회원가입 완료한 경우 mapper 처리 하지 않음
 			}
 			
 		}

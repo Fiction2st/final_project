@@ -78,8 +78,14 @@ public class MemberController implements MemberSessionName{
 	      }
 	      br.close();
 	      if(responseCode==200) {
-	    	  System.out.println("res 코드 : " + res.toString());
-	    	  String token = "AAAAOmB0IpAkKK-mENU29XnpgYN8hPcn0qMz9506vqhkR7Ej7KaCu2NK4VB_w99GrW4xHubWleiLC56434O-WrfSMYw"; // 네이버 로그인 접근 토큰;
+	    	  //System.out.println("res 코드 : " + res.toString());
+	    	  // 로그인하는 네이버 ID 마다 다른 토큰값 처리
+	    	  JSONParser parsing = new JSONParser();
+	    	  Object obj = null;
+	    	  obj = parsing.parse(res.toString());
+	    	  JSONObject jsonObj = (JSONObject)obj;
+	    	  String token = (String)jsonObj.get("access_token"); // 네이버 로그인 접근 토큰;
+	    	  System.out.println("토큰값 : " + jsonObj.get("access_token"));
 	          String header = "Bearer " + token; // Bearer 다음에 공백 추가
 
 	          String apiURL1 = "https://openapi.naver.com/v1/nid/me";
@@ -89,15 +95,14 @@ public class MemberController implements MemberSessionName{
 	          String responseBody = ms.get(apiURL1,requestHeaders);
 	          System.out.println(responseBody);
 	          
-	          JSONParser parsing = new JSONParser();
-	          Object obj = parsing.parse(responseBody);
-	          JSONObject jsonObj = (JSONObject)obj;
+	          // 회원정보 수집
+	          obj = parsing.parse(responseBody);
+	          jsonObj = (JSONObject)obj;
 	          JSONObject resObj = (JSONObject)jsonObj.get("response");
-	          System.out.println("resObj : " + resObj);
 	          
 	          MemberDTO dto = new MemberDTO();
 	          String id = (String)resObj.get("id");
-	          id = id.substring(0,5) + id.substring(12,17) + id.substring(25,30);
+	          id = "(NAVER)"+ id.substring(0,5) + id.substring(12,17) + id.substring(22,24);
 	          System.out.println("id값 : " + id);
 	          String email = (String)resObj.get("email");
 	          System.out.println("e메일 값 : " + email);
@@ -133,7 +138,7 @@ public class MemberController implements MemberSessionName{
 	@GetMapping(value="chkId", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public MemberDTO chkId(@RequestParam String id) {
-		System.out.println("id값 : " + id);
+		System.out.println("중복 확인하는 id값 : " + id);
 		return ms.chkId(id);
 	}
 	
