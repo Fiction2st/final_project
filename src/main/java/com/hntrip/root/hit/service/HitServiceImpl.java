@@ -26,4 +26,14 @@ public class HitServiceImpl implements HitService {
 		}
 		model.addAttribute("myHit", false);
 	}
+	public void addMyHit(int writeNo) {
+		HitDTO dto = new HitDTO();
+		dto.setWriteNo(writeNo); dto.setId("jjj");
+		hm.addMyHit(dto);
+	}
+	public void delMyHit(int writeNo) {
+		HitDTO dto = new HitDTO();
+		dto.setWriteNo(writeNo); dto.setId("jjj");
+		hm.delMyHit(dto);
+	}
 }

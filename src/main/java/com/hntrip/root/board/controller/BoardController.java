@@ -31,11 +31,13 @@ public class BoardController {
 		hs.getMyHit(model, writeNo);
 		return "board/mypage";
 	}
-	@GetMapping("hit")
+	@GetMapping("upHit")
 	@ResponseBody
-	public String hit() {
+	public String upHit() {
 		int writeNo = 41;
 		System.out.println("Hit");
+		//아이디는 후에 받기
+		hs.addMyHit(writeNo);
 		return bs.upHit(writeNo)+"";
 	}
 	@GetMapping("downHit")
@@ -43,6 +45,7 @@ public class BoardController {
 	public String downHit() {
 		int writeNo = 41;
 		System.out.println("downHit");
+		hs.delMyHit(writeNo);
 		return bs.downHit(writeNo)+"";
 	}
 }
