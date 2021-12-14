@@ -44,7 +44,7 @@ public class MemberController implements MemberSessionName{
 		return "member/naverLogin";
 	}
 	@RequestMapping("/naverCallback")
-	public String naverCallback(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+	public String naverCallback(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws UnsupportedEncodingException {
 	    String clientId = "gOu7UJfHmcwmD8ic4Ar5";//애플리케이션 클라이언트 아이디값";
 	    String clientSecret = "cwGnDVvG0_";//애플리케이션 클라이언트 시크릿값";
 	    String code = request.getParameter("code");
@@ -108,6 +108,7 @@ public class MemberController implements MemberSessionName{
 	          System.out.println("e메일 값 : " + email);
 	          dto.setId(id); dto.setEmail(email);
 	          ms.naverLogin(dto);
+	          session.setAttribute(LOGIN, id);
 	    	  return "/index";
 	      }
 	    } catch (Exception e) {
