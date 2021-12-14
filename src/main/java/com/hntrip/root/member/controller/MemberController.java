@@ -97,7 +97,7 @@ public class MemberController implements MemberSessionName{
 	          
 	          MemberDTO dto = new MemberDTO();
 	          String id = (String)resObj.get("id");
-	          id = id.substring(0,5) + id.substring(12,17) + id.substring(25,30);
+	          id = "(NAVER)"+ id.substring(0,5) + id.substring(12,17) + id.substring(22,24);
 	          System.out.println("id값 : " + id);
 	          String email = (String)resObj.get("email");
 	          System.out.println("e메일 값 : " + email);
@@ -126,14 +126,14 @@ public class MemberController implements MemberSessionName{
 	public String register(MemberDTO member){
 		int result = ms.register(member);
 		if(result==1)
-			return "redirect:/index";
+			return "redirect:/login";
 		return "redirect:register_form";
 	}
 	
 	@GetMapping(value="chkId", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public MemberDTO chkId(@RequestParam String id) {
-		System.out.println("id값 : " + id);
+		System.out.println("중복 확인하는 id값 : " + id);
 		return ms.chkId(id);
 	}
 	

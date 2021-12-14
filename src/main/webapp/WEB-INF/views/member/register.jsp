@@ -16,6 +16,7 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+	var chkDid=0; // 아이디 중복확인 버튼을 눌러 확인을 했는지 확인하는 것
 	function chkDup(){
 		var userId = $("#userId").val()
 		if( userId == "" ){
@@ -29,9 +30,11 @@
 			success:function(data){
 				var html = "<font size='1', color='red'>이미 등록된 ID입니다.</font>"
 				$("#chkDupId").html(html)
+				chkDid=2;
 			},error : function(data){
 				var html = "<font size='1', color='blue'>사용 가능한 ID입니다.</font>"
 				$("#chkDupId").html(html)
+				chkDid=1;
 			}
 		})
 	}
@@ -69,19 +72,21 @@
 		var num = pw.search(/[0-9]/g);
 		var eng = pw.search(/[a-z]/ig);
 		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		var bool = false;
 		if(pw.length < 8 || pw.length > 12){
 			document.getElementById('pwd_text').innerHTML = "8자리~12자리 이내로 입력해주세요."
-			return false;
+			return bool;
 		}else if(pw.search(/\s/)!=-1){
 			document.getElementById('pwd_text').innerHTML = "공백없이 입력해주세요."
-			return false;
+			return bool;
 		}else if(num < 0 || eng <0 || spe <0 ){
 			document.getElementById('pwd_text').innerHTML = "영문,숫자,특수문자를 혼합하여 입력해주세요."
-			return false;
+			return bool;
 		}else{
 			console.log("통과");
 			document.getElementById('pwd_text').innerHTML ="";
-			return true;
+			bool = true;
+			return bool;
 		}
 	}
 	function pwdChkFunc(){
@@ -136,7 +141,6 @@
 	
 	function chk_form(){
 		var id = $("#userId").val()
-		var dupId = document.getElementById('chkDupId').value
 		var name = $("#name").val()
 		var p = $("#pwd").val()
 		var email = $("#email").val()
@@ -147,8 +151,7 @@
 			document.getElementById('id_text').innerHTML = "아이디를 입력하세요."
 			$("#userId").focus();
 			return false;
-		}else if(dupId ==""){
-			console.log("dupID 값 : " + dupId)
+		}else if(chkDid != 1){ //아이디 중복확인을 안하거나, 중복일 때 회원가입되지 않도록 함
 			alert('ID 중복을 확인하세요.');
 			return false;
 		}else if ( p == ""){
