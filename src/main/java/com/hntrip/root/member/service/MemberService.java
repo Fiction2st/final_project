@@ -22,7 +22,7 @@ public interface MemberService {
 	public String get(String apiUrl, Map<String, String> requestHeaders);
 	public HttpURLConnection connect(String apiUrl);
 	public String readBody(InputStream body);
-	public int naverLogin(MemberDTO dto);
+	public int apiLogin(MemberDTO dto);
 	public String getAccessToken(String authorize_code);
-	public int getUserInfo(String access_token);
+	public MemberDTO getUserInfo(String access_token);
 }

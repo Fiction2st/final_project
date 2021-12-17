@@ -111,7 +111,7 @@ public class MemberController implements MemberSessionName{
 	          String email = (String)resObj.get("email");
 	          System.out.println("e메일 값 : " + email);
 	          dto.setId(id); dto.setEmail(email);
-	          ms.naverLogin(dto);
+	          ms.apiLogin(dto);
 	          session.setAttribute(LOGIN, id);
 	    	  return "/index";
 	      }
@@ -227,11 +227,13 @@ public class MemberController implements MemberSessionName{
 	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) {
 		String access_token = ms.getAccessToken(code);
 		//System.out.println("access_token 값 : " + access_token);
-		if(ms.getUserInfo(access_token) != 0) {
+		MemberDTO dto = new MemberDTO();
+		dto = ms.getUserInfo(access_token);
+		if(ms.apiLogin(dto) != 0 || ms.apiLogin(dto) == 2 ) {
 			session.setAttribute(LOGIN, access_token);
 			return "index";
 		}
-		return "member/login"; // kakaoLogin 에러시 로그인 창으로 이동
+		return "member/login"; // 로그인에 오류가 발생한 경우
 	}
 		
 }

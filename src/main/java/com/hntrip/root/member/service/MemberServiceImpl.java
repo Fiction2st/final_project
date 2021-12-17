@@ -173,12 +173,12 @@ public class MemberServiceImpl implements MemberService{
 	        }
 	    }
 		@Override
-		public int naverLogin(MemberDTO dto) {
+		public int apiLogin(MemberDTO dto) {
 			MemberDTO chkDTO = mapper.getMember(dto.getId());
 			if(chkDTO == null) {
 				return mapper.apiLogin(dto);
 			}else {
-				return 0;	// 기존에 네이버로 로그인 및 회원가입 완료한 경우 mapper 처리 하지 않음
+				return 2;	// 기존에 네이버로 로그인 및 회원가입 완료한 경우 mapper 처리 하지 않음
 			}
 			
 		}
@@ -239,8 +239,9 @@ public class MemberServiceImpl implements MemberService{
 			return access_Token;
 		}
 		@Override
-		public int getUserInfo(String access_token) {
+		public MemberDTO getUserInfo(String access_token) {
 			String reqURL = "https://kapi.kakao.com/v2/user/me";
+			MemberDTO dto = new MemberDTO();
 			try {
 		        URL url = new URL(reqURL);
 		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -268,7 +269,7 @@ public class MemberServiceImpl implements MemberService{
 		        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 		        
 		        String email = kakao_account.getAsJsonObject().get("email").getAsString();
-		        MemberDTO dto = new MemberDTO();
+		        
 		        if(email != "") { // 이메일 정보가 있다면 이메일 주소를 id로 사용함
 			        String[] split_email = email.split("@");
 			        String kakaoEmailId = "(Kakao)" + split_email[0];
@@ -278,12 +279,10 @@ public class MemberServiceImpl implements MemberService{
 		        }
 		        dto.setEmail(email);
 		        
-		        mapper.apiLogin(dto);
-		        return 1;
+		        return dto;
 		    } catch (IOException e) {
 		        e.printStackTrace();
-		        return 0;
 		    }
-			 
+			return dto;
 		}
 }
