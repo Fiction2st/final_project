@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.hntrip.root.board.mapper.BoardMapper">
-  	<resultMap type="com.hntrip.root.board.dto.BoardDTO" id="board">
+<mapper namespace="com.hntrip.root.board.mapper.BoardMapper">
+	<resultMap type="com.hntrip.root.board.dto.BoardDTO" id="board">
 		<id property="writeNo" column="write_no"/>
 		<result property="id" column="id"/>
 		<result property="title" column="title"/>
@@ -19,18 +19,17 @@
 		select * from board where country=#{country}
 	</select>
 
-<!-- 	<select id="searchCountry" resultType="com.hntrip.root.board.dto.BoardDTO">
-		select write_no from board where country=#{country}
+		<select id="getMyData" resultMap="board">
+		select * from board where write_no = #{writeNo}
 	</select>
--->
-<!-- 	<select id="searchCountry" parameterType="String" resultMap="file">
-		SELECT b.id, b.title, b.content, b.hit, b.country, b.city, b.write_no, b.savedate
-				f.write_no, f.file_name
-		FROM board b
-		JOIN file_name f
-		ON b.write_no = f.write_no
-		WHERE b.country = #{country}
+	<update id="upHit">
+		update board set hit = hit + 1 where write_no = #{writeNo}
+	</update>
+	<update id="downHit">
+		update board set hit = hit - 1 where write_no = #{writeNo}
+	</update>
+	<select id="nowHit" resultMap="board">
+		select hit from board where write_no = #{writeNo}
 	</select>
- --> 
+	
   </mapper>
-

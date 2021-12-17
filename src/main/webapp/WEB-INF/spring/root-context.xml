@@ -31,5 +31,6 @@
    <mybatis-spring:scan base-package="com.hntrip.root.follow.mapper"/>
    <mybatis-spring:scan base-package="com.hntrip.root.member.mapper"/>
    <mybatis-spring:scan base-package="com.hntrip.root.reply.mapper"/>
-				
+   <mybatis-spring:scan base-package="com.hntrip.root.hit.mapper"/>
+		
 </beans>

@@ -14,6 +14,5 @@ public class FileDTO {
 	}
 	public void setWriteNo(int writeNo) {
 		this.writeNo = writeNo;
-	}
-	
+	}	
 }
