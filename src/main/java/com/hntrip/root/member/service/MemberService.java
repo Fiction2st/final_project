@@ -18,10 +18,11 @@ public interface MemberService {
 	public int loginCheck(String id, String pwd);
 	public void autoLogin(HttpSession session, HttpServletResponse response, String id);
 	public void keepLogin(String session, Date limitDate, String id);
-	public void kakaoLogin(String id);
 	public void logout(Cookie loginCookie, HttpSession session, HttpServletResponse response);
 	public String get(String apiUrl, Map<String, String> requestHeaders);
 	public HttpURLConnection connect(String apiUrl);
 	public String readBody(InputStream body);
 	public int naverLogin(MemberDTO dto);
+	public String getAccessToken(String authorize_code);
+	public int getUserInfo(String access_token);
 }
