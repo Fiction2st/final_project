@@ -1,8 +1,10 @@
 package com.hntrip.root.member.service;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,6 +24,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.hntrip.root.common.session.MemberSessionName;
 import com.hntrip.root.member.dto.MemberDTO;
 import com.hntrip.root.member.mapper.MemberMapper;
@@ -107,12 +112,7 @@ public class MemberServiceImpl implements MemberService{
 		mapper.keepLogin(map);
 
 	}
-	public void kakaoLogin(String id) {
-		MemberDTO dto =	mapper.getMember(id);
-		if(dto == null) {
-			mapper.kakaoLogin(id);
-		}
-	}
+
 	public void logout(Cookie loginCookie, HttpSession session, HttpServletResponse response) {
 		if(loginCookie!=null) {	
 			loginCookie.setMaxAge(0);
@@ -176,10 +176,114 @@ public class MemberServiceImpl implements MemberService{
 		public int naverLogin(MemberDTO dto) {
 			MemberDTO chkDTO = mapper.getMember(dto.getId());
 			if(chkDTO == null) {
-				return mapper.naverLogin(dto);
+				return mapper.apiLogin(dto);
 			}else {
 				return 0;	// 기존에 네이버로 로그인 및 회원가입 완료한 경우 mapper 처리 하지 않음
 			}
 			
+		}
+		@Override
+		public String getAccessToken(String authorize_code) {
+			String access_Token = "";
+			String refresh_Token = "";
+			String reqURL = "https://kauth.kakao.com/oauth/token";
+
+			try {
+				URL url = new URL(reqURL);
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+				//    POST 요청을 위해 기본값이 false인 setDoOutput을 true로
+				conn.setRequestMethod("POST");
+				conn.setDoOutput(true);
+
+				//    POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
+				BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+				StringBuilder sb = new StringBuilder();
+				sb.append("grant_type=authorization_code");
+				sb.append("&client_id=ba90b94fc88f2ca04ef48f2ab43249aa");
+				sb.append("&redirect_uri=http://localhost:8085/root/member/kakaoLogin");
+				sb.append("&code=" + authorize_code);
+				bw.write(sb.toString());
+				bw.flush();
+
+				//    결과 코드가 200이라면 성공
+				int responseCode = conn.getResponseCode();
+				System.out.println("responseCode : " + responseCode);
+
+				//    요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
+				BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+				String line = "";
+				String result = "";
+
+				while ((line = br.readLine()) != null) {
+					result += line;
+				}
+				System.out.println("response body : " + result);
+
+				//    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
+				JsonParser parser = new JsonParser();
+				JsonElement element = parser.parse(result);
+
+				access_Token = element.getAsJsonObject().get("access_token").getAsString();
+				refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
+
+				System.out.println("access_token : " + access_Token);
+				System.out.println("refresh_token : " + refresh_Token);
+
+				br.close();
+				bw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
+
+			return access_Token;
+		}
+		@Override
+		public int getUserInfo(String access_token) {
+			String reqURL = "https://kapi.kakao.com/v2/user/me";
+			try {
+		        URL url = new URL(reqURL);
+		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		        conn.setRequestMethod("POST");
+		        
+		        //    요청에 필요한 Header에 포함될 내용
+		        conn.setRequestProperty("Authorization", "Bearer " + access_token);
+		        
+		        int responseCode = conn.getResponseCode();
+		        System.out.println("responseCode : " + responseCode);
+		        
+		        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		        
+		        String line = "";
+		        String result = "";
+		        
+		        while ((line = br.readLine()) != null) {
+		            result += line;
+		        }
+		        System.out.println("response body : " + result);
+		        
+		        JsonParser parser = new JsonParser();
+		        JsonElement element = parser.parse(result);
+		        String id = element.getAsJsonObject().get("id").toString();
+		        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+		        
+		        String email = kakao_account.getAsJsonObject().get("email").getAsString();
+		        MemberDTO dto = new MemberDTO();
+		        if(email != "") { // 이메일 정보가 있다면 이메일 주소를 id로 사용함
+			        String[] split_email = email.split("@");
+			        String kakaoEmailId = "(Kakao)" + split_email[0];
+			        dto.setId(kakaoEmailId);
+		        }else { // 없는 경우 kakao api 가 제공하는 고유 id 값을 사용함
+		        	dto.setId(id);
+		        }
+		        dto.setEmail(email);
+		        
+		        mapper.apiLogin(dto);
+		        return 1;
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		        return 0;
+		    }
+			 
 		}
 }

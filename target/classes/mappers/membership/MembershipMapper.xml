@@ -29,11 +29,8 @@
 								limit_date = #{limitDate}
 							where id = #{id}
 	</update>
-	<insert id="kakaoLogin">
-		insert into membership(no,id) values(membership_seq.nextval,#{id})
-	</insert>
-	
-	<insert id="naverLogin">
+
+	<insert id="apiLogin">
 		insert into membership(no,id,email) values(membership_seq.nextval, #{id}, #{email})
 	</insert>
  </mapper>
