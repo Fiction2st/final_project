@@ -17,4 +17,7 @@
 	<delete id="delMyHit">
 		delete from board_hit where write_no = #{writeNo} and id = #{id}
 	</delete>
+	<select id="allMyHit" resultMap="hit">
+		select write_no from board_hit where id = #{id}
+	</select>
 </mapper>

@@ -3,7 +3,9 @@ package com.hntrip.root.file.mapper;
 import java.util.List;
 
 import com.hntrip.root.file.dto.FileDTO;
+import com.hntrip.root.hit.dto.HitDTO;
 
 public interface FileMapper {
 	public List<FileDTO> getMyImg(int writeNo);
+	public List<FileDTO> hitMyImg(List<HitDTO> list);
 }

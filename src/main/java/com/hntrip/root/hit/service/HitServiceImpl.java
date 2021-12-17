@@ -1,5 +1,6 @@
 package com.hntrip.root.hit.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,9 @@ public class HitServiceImpl implements HitService {
 		HitDTO dto = new HitDTO();
 		dto.setWriteNo(writeNo); dto.setId("jjj");
 		hm.delMyHit(dto);
+	}
+	public List<HitDTO> allMyHit(String id) {
+		List<HitDTO> list = hm.allMyHit(id);
+		return list;
 	}
 }
