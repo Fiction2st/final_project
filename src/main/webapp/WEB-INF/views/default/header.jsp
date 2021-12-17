@@ -4,6 +4,11 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript">
+function submit(){
+	submit(country);
+}
+</script>
 <head>
 <meta charset="UTF-8">
 <title></title>
@@ -42,10 +47,14 @@ nav ul li a { text-decoration: none; color: white;}
 			<li class="search">
 				<c:choose>
 					<c:when test="${loginUser != null }">
-						<input type="text" id="search" width="40">
-						<a href="${contextPath }/board/search">
-						<img src="https://img.lovepik.com/original_origin_pic/19/01/07/f4d522e5616a84704ba33c88addec54f.png_wh300.png" width="20"/>
-						</a>
+						<form action="board/search" method="post">
+						<input type="text" id="country" name="country" width="40">
+							<button type="submit">
+								<img
+									src="https://img.lovepik.com/original_origin_pic/19/01/07/f4d522e5616a84704ba33c88addec54f.png_wh300.png"
+									width="25" />
+							</button>
+						</form>
 					</c:when>
 				</c:choose>
 			</li>

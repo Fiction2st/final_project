@@ -4,5 +4,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.hntrip.root.board.mapper.BoardMapper">
-  
+  	<resultMap type="com.hntrip.root.board.dto.BoardDTO" id="board">
+		<id property="writeNo" column="write_no"/>
+		<result property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="hit" column="hit"/>
+		<result property="country" column="country"/>
+		<result property="city" column="city"/>
+		<result property="saveDate" column="savedate"/>
+	</resultMap>
+
+	<select id="searchCountry" resultMap="board">
+		select * from board where country=#{country}
+	</select>
+
+<!-- 	<select id="searchCountry" resultType="com.hntrip.root.board.dto.BoardDTO">
+		select write_no from board where country=#{country}
+	</select>
+-->
+<!-- 	<select id="searchCountry" parameterType="String" resultMap="file">
+		SELECT b.id, b.title, b.content, b.hit, b.country, b.city, b.write_no, b.savedate
+				f.write_no, f.file_name
+		FROM board b
+		JOIN file_name f
+		ON b.write_no = f.write_no
+		WHERE b.country = #{country}
+	</select>
+ --> 
   </mapper>
+
