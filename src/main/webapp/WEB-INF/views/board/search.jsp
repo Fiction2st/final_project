@@ -18,11 +18,24 @@ header{
 	width: 100%; height: 20%;
 }
 .view{
-	width: 70%; height: 70%; margin:0 auto; display:flex;
+	width: 810px; height: 70%; margin:0 auto; display:flex;
 }
-.tab{ order:1;	width: 10%; height: 100%; yellow; border: white 1px solid; }
-.content{ order:2;	width: 90%; height: 100%;  border: white 1px solid;}
+.content{ order:2;	width: 100%; height: 100%;  border: white 1px solid; display:flex; top: 0px;}
 .td { color: white;}
+.grid-container {
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px 150px; /* 행 간격 */
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  background-color: white;
+  padding: 10px;
+}
+.grid-item {
+  
+  grid-column-start: 1;
+  grid-column-end: 2;
+  border: 1px solid rgba(0, 0, 0, 1);
+}
 </style>
 </head>
 <body>
@@ -32,23 +45,17 @@ header{
 	</header>
 
 	<div class="view">
-		<div class="tab">
-		<a href="#" style="color:white; align:center;">나라</a>
-		</div>
 		<div class="content">
   	
  		<c:if test="${filelist.size() == 0 }">
 			검색 결과가 없습니다.
 		</c:if>
- 
-		<table>
-			<c:forEach var="dto" items="${filelist }">
-				<tr>
-					<td>${dto.writeNo }</td>
-					<td>${dto.fileName}</td>
-				</tr>
-			</c:forEach>
-		</table>
+	<div class="grid-container"> 			
+				<c:forEach var="dto" items="${filelist }">
+					<img width="150" height="150"
+							src="${contextPath}/board/download?fileName=${dto.fileName}">
+				</c:forEach>
+	</div>
 		</div>
 	</div>
 </div>
