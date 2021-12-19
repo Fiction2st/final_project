@@ -6,11 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>likes</title>
+<style type="text/css">
+* { margin: 0; padding: 0; }
+#wrap { width: 1220px; margin: 0 auto; }
+</style>
 </head>
 <body>
+<div id="wrap">
 	<c:forEach var="hitImg" items="${hitList}">
-		<img src="${contextPath}/board/download?fileName=${hitImg.fileName}">
+		<img src="${contextPath}/board/download?fileName=${hitImg.fileName}" width="400px" height="400px">
 	</c:forEach>
+</div>
 </body>
 </html>
