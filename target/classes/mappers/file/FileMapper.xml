@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{list.writeNo}
 		</foreach>
   	</select>
-
+  	
 	<select id="getMyImg" resultMap="file">
 		select * from file_name where write_no = #{writeNo}
 	</select>

@@ -51,12 +51,20 @@ public class BoardController {
 
 	}
 	@PostMapping("/search")
-	public String search(@RequestParam String country, Model model) {
-		System.out.println(country);
-		System.out.println("여기는 B컨트롤러");		
-		if(country!=null) {
-			bs.searchCountry(country, model);
-			return "/board/search";
+	public String search(@RequestParam String key, @RequestParam String word, Model model
+//			@RequestParam(required = false, defaultValue= "1") int num
+			) {
+		if(word!=null) {
+			if(key.equals("country")) {
+				bs.searchByCountry(word, model);
+			}
+			else if(key.equals("city")) {
+				bs.searchByCity(word, model);
+			}
+			else if(key.equals("hit")) {
+				bs.searchByTitle(word, model);
+			}
+			return "board/search";
 		}else {
 			return "redirect:/index";
 		}

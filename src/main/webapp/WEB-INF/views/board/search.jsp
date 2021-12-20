@@ -11,23 +11,22 @@
 <style type="text/css">
 *{margin: 0;}
 .wrap {
-	width: 100%; height: 710px;
+	width: 100%; height: 100%;
 	background-color: black;
 }
 header{
 	width: 100%; height: 20%;
 }
 .view{
-	width: 810px; height: 70%; margin:0 auto; display:flex;
+	width: 75%; height: 100%; margin:0 auto; padding: 10%; ;
 }
-.content{ order:2;	width: 100%; height: 100%;  border: white 1px solid; display:flex; top: 0px;}
-.td { color: white;}
+.content{ width: 100%; height: 100%; display:flex; color: white;}
 .grid-container {
   display: grid;
   grid-template-columns: 150px 150px 150px 150px 150px; /* 행 간격 */
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  background-color: white;
+/*  background-color: white; */
   padding: 10px;
 }
 .grid-item {
@@ -39,25 +38,24 @@ header{
 </style>
 </head>
 <body>
-<div class="wrap">
-	<header>
-		<c:import url="../default/header.jsp"/>
-	</header>
+	<div class="wrap">
+		<header>
+			<c:import url="../default/header.jsp" />
+		</header>
 
-	<div class="view">
-		<div class="content">
-  	
- 		<c:if test="${filelist.size() == 0 }">
-			검색 결과가 없습니다.
-		</c:if>
-	<div class="grid-container"> 			
-				<c:forEach var="dto" items="${filelist }">
-					<img width="150" height="150"
+		<div class="view">
+			<div class="content">
+				<c:if test="${filelist.size() == 0 || filelist == null}">
+					검색 결과가 없습니다.
+				</c:if>
+				<div class="grid-container">
+					<c:forEach var="dto" items="${filelist }">
+						<img width="150" height="150"
 							src="${contextPath}/board/download?fileName=${dto.fileName}">
-				</c:forEach>
-	</div>
+					</c:forEach>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>

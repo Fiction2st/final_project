@@ -15,11 +15,16 @@
 		<result property="saveDate" column="savedate"/>
 	</resultMap>
 
-	<select id="searchCountry" resultMap="board">
-		select * from board where country=#{country}
+	<select id="searchByCountry" resultMap="board">
+		select * from board where country=#{word} order by hit desc
 	</select>
-
-		<select id="getMyData" resultMap="board">
+	<select id="searchByCity" resultMap="board">
+		select * from board where city=#{word} order by hit desc
+	</select>
+	<select id="searchByTitle" resultMap="board">
+		select * from board where title=#{word} order by hit desc
+	</select>
+	<select id="getMyData" resultMap="board">
 		select * from board where write_no = #{writeNo}
 	</select>
 	<update id="upHit">

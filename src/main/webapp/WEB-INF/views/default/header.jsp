@@ -12,12 +12,15 @@ function submit(){
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ 
 <style type="text/css">
 *{margin : 0;}
 nav { display: flex; position: fixed;  z-index: 10;}
 nav ul { list-style: none; display: flex; justify-content: flex-end; }
-nav ul li { margin: 0 3px; padding: 10px 10px; }
+nav ul li { margin: 0 3px; display: flex; padding: 10px 10px; }
 nav ul li a { text-decoration: none; color: white;}
+form {display: flex;}
 .search {
 	align: center;
 }
@@ -47,13 +50,22 @@ nav ul li a { text-decoration: none; color: white;}
 			<li class="search">
 				<c:choose>
 					<c:when test="${loginUser != null }">
-						<form action="board/search" method="post">
-						<input type="text" id="country" name="country" width="40">
-							<button type="submit">
-								<img
-									src="https://img.lovepik.com/original_origin_pic/19/01/07/f4d522e5616a84704ba33c88addec54f.png_wh300.png"
-									width="25" />
-							</button>
+						<form action="${contextPath }/board/search" method="post">
+							<select name="key">
+								<option value="country">국가별</option>
+								<option value="city">도시별</option>
+								<option value="hit">제목별</option>
+							</select>
+
+							<div class="input-group">
+								<input type="text" name="word" class="form-control"
+									placeholder="Search" size="20">
+								<div class="input-group-btn">
+									<button class="btn btn-default" type="submit">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</div>
+							</div>
 						</form>
 					</c:when>
 				</c:choose>
