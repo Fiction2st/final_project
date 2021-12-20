@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>SEARCH</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 *{margin: 0;}
 .wrap {
@@ -20,7 +22,8 @@ header{
 .view{
 	width: 75%; height: 100%; margin:0 auto; padding: 10%; ;
 }
-.content{ width: 100%; height: 100%; display:flex; color: white;}
+.tab { width: 100%; height:10%; }
+.content{ width: 100%; height: 90%; display:flex; color: white;}
 .grid-container {
   display: grid;
   grid-template-columns: 150px 150px 150px 150px 150px; /* 행 간격 */
@@ -42,8 +45,20 @@ header{
 		<header>
 			<c:import url="../default/header.jsp" />
 		</header>
-
+ 
 		<div class="view">
+<!--
+			<div class="tab">
+			<ul class="nav nav-tabs">
+				<li class="active"><a
+					href="${contextPath }/board/search?key=country" method="post">Country</a></li>
+				<li class="active"><a
+					href="${contextPath }/board/search?key=city" method="post">City</a></li>
+				<li class="active"><a
+					href="${contextPath }/board/search?key=title" method="post">Title</a></li>
+			</ul>
+			</div>
+ -->			
 			<div class="content">
 				<c:if test="${filelist.size() == 0 || filelist == null}">
 					검색 결과가 없습니다.

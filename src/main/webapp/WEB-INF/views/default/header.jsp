@@ -21,9 +21,6 @@ nav ul { list-style: none; display: flex; justify-content: flex-end; }
 nav ul li { margin: 0 3px; display: flex; padding: 10px 10px; }
 nav ul li a { text-decoration: none; color: white;}
 form {display: flex;}
-.search {
-	align: center;
-}
 </style>
 </head>
 <body>
@@ -47,7 +44,7 @@ form {display: flex;}
 				<a href="${contextPath }/">JOIN US</a>
 			</li> 
 			
-			<li class="search">
+			<li>
 				<c:choose>
 					<c:when test="${loginUser != null }">
 						<form action="${contextPath }/board/search" method="post">
