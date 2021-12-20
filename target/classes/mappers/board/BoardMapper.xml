@@ -2,7 +2,54 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.hntrip.root.board.mapper.BoardMapper">
-  
-  </mapper>
+
+<mapper namespace="com.hntrip.root.board.mapper.BoardMapper">
+	<resultMap id="board"
+		type="com.hntrip.root.board.dto.BoardDTO">
+		<id property="writeNo" column="write_no" />
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="country" column="country" />
+		<result property="city" column="city" />
+		<result property="saveDate" column="savedate" />
+	</resultMap>
+
+	<select id="getList" resultMap="board">
+	
+		select * from board
+	
+	</select>
+
+	<select id="read" resultMap="board">
+		select * from board where write_no = #{write_no}
+	</select>
+
+	<insert id="insert">
+		insert into board
+		(write_no,title,content, country, city,id,saveDate)
+		values
+		(board_seq.nextval, #{title}, #{content},
+		#{country},#{city},#{id},#{saveDate})
+	</insert>
+	
+	<delete id="delete">
+		delete from board where write_no = #{write_no}
+	</delete>
+	
+	<update id="update">
+		update board
+		set title = #{title},
+		content = #{content},
+		country = #{country},
+		city = #{city},
+		saveDate = #{saveDate}
+		where write_no = #{write_no}
+	</update>
+	
+	<select id="getwriteNo" resultType="int">
+	select max(write_no) from board where id= #{id}
+	
+	</select>
+</mapper>

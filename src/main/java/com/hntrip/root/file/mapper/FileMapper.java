@@ -1,5 +1,11 @@
 package com.hntrip.root.file.mapper;
 
-public interface FileMapper {
+import java.util.List;
 
+import com.hntrip.root.file.dto.FileDTO;
+
+public interface FileMapper {
+	public void insert(List<FileDTO> file);
+	public void delete(int writeNo);
+	
 }
