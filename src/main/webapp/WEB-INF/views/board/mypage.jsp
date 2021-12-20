@@ -24,7 +24,7 @@ body {
 }
 
 .swiper {
-	width: 100%;
+	width: 1200px;
 	padding-top: 50px;
 	padding-bottom: 200px;
 }
@@ -42,17 +42,17 @@ img {
 }
 
 .content {
-	width: 500px; height: 400px; color: white; background: black;
+	width: 400px; height: 400px; color: white; background: black;
 	position: relative; left: -270px; top: -75px; z-index: 10;
 	padding: 25px; box-shadow: 0 0 30px gray;
 }
 .contentBox { width: 100%; height: 360px;}
 table { font-size: 15pt; }
 table tr td:nth-child(1) {
-	width: 175px; font-weight: bold; height: 30px;
+	width: 140px; font-weight: bold; height: 30px;
 }
 table tr td:nth-child(2) {
-	width: 325px; word-break: break-all;
+	width: 360px; word-break: break-all;
 }
 table.contentData tr:last-child {
 	height: 210px; vertical-align: top;
@@ -86,7 +86,7 @@ table.commentData { text-align: center; }
 }*/
 table.commentData tr td:nth-child(2) { text-align: left; }
 
-.btnGroup { text-align: center; }
+.btnGroup, .commentWrite { text-align: center; }
 .btn {
 	color: black; font-size: 20px; font-weight: bold; background: white;
 	display: inline-block; padding: 10px 20px; border-radius: 20px;
@@ -113,9 +113,31 @@ table.commentData tr td:nth-child(2) { text-align: left; }
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 //좋아요
+var cnt = 0;
 function hit(){
+	var url = ""
+	if(cnt == 0){
+		if(${myHit} == true){//hit테이블에 아이디가 있을 경우(이미 좋아요 누름)
+			url = "downHit?writeNo="+${myData.writeNo}
+			$("#hit").removeClass("onhit")
+		}else{
+			url = "upHit?writeNo="+${myData.writeNo}
+			$("#hit").addClass("onhit")
+		}
+		cnt++;
+	}else { //cnt가 0이 아니면 이미 해당 페이지에서 한번 히트가 처리됬으므로 반대로 처리
+		if(${myHit} == true){
+			url = "upHit?writeNo="+${myData.writeNo}
+			$("#hit").addClass("onhit")
+		}else{
+			url = "downHit?writeNo="+${myData.writeNo}
+			$("#hit").removeClass("onhit")
+		}
+		cnt--;
+	}
+	
 	$.ajax({
-		url : "hit",
+		url : url,
 		type : "get",
 		success : function(data){
 			$("#hit").text("♥ "+data)
@@ -138,8 +160,6 @@ function commentList(){
 			reply.forEach(function(data) {
 				html += "<tr><td>" + data.id + "</td>";
 				html += "<td>" + data.content + "</td></tr>"
-				//html += "<tr><td><b>" + data.id + "</b><br>";
-				//html += "<small>" + data.content + "</small></td></tr>"
 			})
 			//console.log(html)
 			$(".commentData").html(html)
@@ -162,8 +182,8 @@ function commentClose() {
 }
 //댓글 등록
 function commentAdd(){
-	var no = 41;
-	var id = 'jjj';
+	var no = 41; //현재 글번호 받아오기
+	var id = 'jjj';//현재 로그인한 아이디 받아오기
 	var cmt = $("#commentText").val();
 	var form = {writeNo : no, id : id, content : cmt}
 	console.log(form)
@@ -191,7 +211,7 @@ function commentAdd(){
 <body>
 	<div class="swiper">
 		<div class="swiper-wrapper">
-		<!-- div 파일 갯수만큼 for문 -->
+			<!-- div 파일 갯수만큼 for문 -->
 			<c:forEach var="img" items="${myImg}">
 				<div class="swiper-slide">
 					<img src="${contextPath}/board/download?fileName=${img.fileName}">
@@ -200,10 +220,11 @@ function commentAdd(){
 		</div>
 		<!-- Add Pagination -->
 		<div class="swiper-pagination"></div>
-	</div>
+	</div><!-- swiper end -->
 	
 	<div class="content">
 		<div class="contentBox">
+			<!-- 글 내용 화면 -->
 			<table class="contentData">
 				<caption>${myData.country}</caption>
 				<tr>
@@ -221,13 +242,13 @@ function commentAdd(){
 			</table>
 			<!-- 댓글 화면 -->
 			<div class="comment">
-				<a onclick='commentClose()' href='javascript:void(0)'>X</a>
+				<a onclick="commentClose()" href="javascript:void(0)">X</a>
 				<div class="commentGroup">
 					<table class="commentData">
 					</table>
 				</div>
 			</div>
-		</div>
+		</div><!-- contentBox end -->
 		
 		<div class="btnGroup">
 			<c:if test="${myHit == false}">
@@ -244,7 +265,8 @@ function commentAdd(){
 			<input type="text" id="commentText">&nbsp;&nbsp;
 			<a onclick="commentAdd()" href="javascript:void(0)">등록</a>
 		</div>
-	</div>
+	</div><!-- content end -->
+	
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
 	var swiper = new Swiper(".swiper", {

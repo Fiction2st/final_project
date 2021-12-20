@@ -1,6 +1,5 @@
 package com.hntrip.root.file.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import com.hntrip.root.file.dto.FileDTO;
 import com.hntrip.root.file.mapper.FileMapper;
 import org.springframework.ui.Model;
 
+import com.hntrip.root.hit.dto.HitDTO;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -22,5 +22,8 @@ public class FileServiceImpl implements FileService {
 	public List<FileDTO> searchWriteNo(List<BoardDTO> WriteNoList) {
 		return fm.searchWriteNo(WriteNoList);		
 
+	}
+	public void hitMyImg(List<HitDTO> wirteNo, Model model) {
+		model.addAttribute("hitList", fm.hitMyImg(wirteNo));
 	}
 }

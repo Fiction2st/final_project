@@ -34,16 +34,19 @@ public class BoardController {
 		hs.getMyHit(model, writeNo);
 		return "board/mypage";
 	}
-	@GetMapping("hit")
+	@GetMapping("upHit")
 	@ResponseBody
-	public String hit(@RequestParam int writeNo) {
+	public String upHit(@RequestParam int writeNo) {
 		System.out.println("Hit");
+		//아이디는 후에 받기
+		hs.addMyHit(writeNo);
 		return bs.upHit(writeNo)+"";
 	}
 	@GetMapping("downHit")
 	@ResponseBody
 	public String downHit(@RequestParam int writeNo) {
 		System.out.println("downHit");
+		hs.delMyHit(writeNo);
 		return bs.downHit(writeNo)+"";
 
 	}
