@@ -12,8 +12,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 *{margin: 0;}
+
 .wrap {
-	width: 100%; height: 100%;
+	width: 100%;
 	background-color: black;
 }
 header{
@@ -65,8 +66,9 @@ header{
 				</c:if>
 				<div class="grid-container">
 					<c:forEach var="dto" items="${filelist }">
-						<img width="150" height="150"
+						<a href="${contextPath}/board/mypage?writeNo=${dto.writeNo}"><img width="150" height="150"
 							src="${contextPath}/board/download?fileName=${dto.fileName}">
+						</a>
 					</c:forEach>
 				</div>
 			</div>
