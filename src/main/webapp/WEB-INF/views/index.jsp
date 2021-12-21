@@ -48,9 +48,8 @@ nav ul li a { text-decoration: none; color: white; }
 </style>
 </head>
 <body>
-<c:import url="default/header.jsp"/>
-
 <div class="wrap" align="center">
+	<c:import url="default/header.jsp"/>
 	<div class="back-img">
 		<section class="cnt">
 			<p id="t">HAVE A NICE TRIP!</p>

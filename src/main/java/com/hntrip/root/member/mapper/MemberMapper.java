@@ -8,5 +8,5 @@ public interface MemberMapper {
 	public MemberDTO chkId(String id);
 	public MemberDTO getMember(String id);
 	public void keepLogin(Map<String, Object> map); 
-	public void kakaoLogin(String id);
+	public int apiLogin(MemberDTO member);
 }
