@@ -2,6 +2,7 @@ package com.hntrip.root.member.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import javax.servlet.http.Cookie;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -10,14 +11,12 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.hntrip.root.common.session.MemberSessionName;
 import com.hntrip.root.member.dto.MemberDTO;
 import com.hntrip.root.member.service.MemberService;
@@ -212,6 +208,7 @@ public class MemberController implements MemberSessionName{
 			ms.autoLogin(session, response, id);
 		}
 		session.setAttribute(LOGIN, id);
+		System.out.println(session.getAttribute(LOGIN));
 		return "redirect:/index";
 	}
 	@GetMapping("logout")
@@ -238,5 +235,4 @@ public class MemberController implements MemberSessionName{
 		}
 		return "member/login"; // 로그인에 오류가 발생한 경우
 	}
-		
 }
