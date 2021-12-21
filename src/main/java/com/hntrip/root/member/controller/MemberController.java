@@ -105,14 +105,16 @@ public class MemberController implements MemberSessionName{
 	          JSONObject resObj = (JSONObject)jsonObj.get("response");
 	          
 	          MemberDTO dto = new MemberDTO();
-	          String id = (String)resObj.get("id");
-	          id = "(NAVER)"+ id.substring(0,5) + id.substring(12,17) + id.substring(22,24);
-	          System.out.println("id값 : " + id);
+	         //String id = (String)resObj.get("id");
+	         //id = "(NAVER)"+ id.substring(0,5) + id.substring(12,17) + id.substring(22,24);
+	         //System.out.println("id값 : " + id);
 	          String email = (String)resObj.get("email");
 	          System.out.println("e메일 값 : " + email);
-	          dto.setId(id); dto.setEmail(email);
+	          String[] split_email = email.split("@");
+		      String naverId = "(NAVER)" + split_email[0];
+	          dto.setId(naverId); dto.setEmail(email);
 	          ms.apiLogin(dto);
-	          session.setAttribute(LOGIN, id);
+	          session.setAttribute(LOGIN, naverId);
 	    	  return "/index";
 	      }
 	    } catch (Exception e) {
@@ -229,8 +231,9 @@ public class MemberController implements MemberSessionName{
 		//System.out.println("access_token 값 : " + access_token);
 		MemberDTO dto = new MemberDTO();
 		dto = ms.getUserInfo(access_token);
+		String id = dto.getId();
 		if(ms.apiLogin(dto) != 0 || ms.apiLogin(dto) == 2 ) {
-			session.setAttribute(LOGIN, access_token);
+			session.setAttribute(LOGIN, id);
 			return "index";
 		}
 		return "member/login"; // 로그인에 오류가 발생한 경우
