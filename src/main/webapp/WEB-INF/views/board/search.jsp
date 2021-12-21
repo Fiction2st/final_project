@@ -30,14 +30,7 @@ header{
   grid-template-columns: 150px 150px 150px 150px 150px; /* 행 간격 */
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-/*  background-color: white; */
   padding: 10px;
-}
-.grid-item {
-  
-  grid-column-start: 1;
-  grid-column-end: 2;
-  border: 1px solid rgba(0, 0, 0, 1);
 }
 </style>
 </head>
@@ -46,20 +39,7 @@ header{
 		<header>
 			<c:import url="../default/header.jsp" />
 		</header>
- 
-		<div class="view">
-<!--
-			<div class="tab">
-			<ul class="nav nav-tabs">
-				<li class="active"><a
-					href="${contextPath }/board/search?key=country" method="post">Country</a></li>
-				<li class="active"><a
-					href="${contextPath }/board/search?key=city" method="post">City</a></li>
-				<li class="active"><a
-					href="${contextPath }/board/search?key=title" method="post">Title</a></li>
-			</ul>
-			</div>
- -->			
+		<div class="view">		
 			<div class="content">
 				<c:if test="${filelist.size() == 0 || filelist == null}">
 					검색 결과가 없습니다.

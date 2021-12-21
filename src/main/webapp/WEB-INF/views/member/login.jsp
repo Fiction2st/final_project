@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-<!-- <!DOCTYPE html> -->
 <!DOCTYPE html">
 <html>
 <head>
@@ -81,13 +80,12 @@ function kakaoLogin() {
 <form action="loginCheck" method="post">
 	<div class="bb">	
 		<table>
-			
 			<tr>
-				<td><input type="text" id="join" name="id" placeholder="Input ID"></td>
-				<td rowspan="2"><input type="submit" value="로그인" style="width:50px; height:50px;"></td>
+				<td><input type="text" id="join" name="id" placeholder="Input ID" style="color:black;"></td>
+				<td rowspan="2"><input type="submit" value="로그인" style="color:black; width:50px; height:50px;"></td>
 			</tr>
 			<tr>
-				<td><input type="password" name="pwd" placeholder="Input Password"></td>
+				<td><input type="password" name="pwd" placeholder="Input Password" style="color:black;"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><label><input type="checkbox" name="autoLogin">Auto Login</label></td>
@@ -97,10 +95,9 @@ function kakaoLogin() {
 </form>
 	<div class="cc">
 		<hr>   
-  		<a onclick="kakaoLogin();">
+  		<a onclick="kakaoLogin();" href="javascript:void(0)">
 			<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/></a>
  	</div> 
-
 </div>
 </body>
 </html>

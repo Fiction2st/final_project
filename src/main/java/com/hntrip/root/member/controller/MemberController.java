@@ -56,6 +56,7 @@ public class MemberController implements MemberSessionName{
 			ms.autoLogin(session, response, id);
 		}
 		session.setAttribute(LOGIN, id);
+		System.out.println(session.getAttribute(LOGIN));
 		return "redirect:/index";
 	}
 	@GetMapping("logout")

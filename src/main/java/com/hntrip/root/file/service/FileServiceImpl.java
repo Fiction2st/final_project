@@ -24,6 +24,10 @@ public class FileServiceImpl implements FileService {
 
 	}
 	public void hitMyImg(List<HitDTO> wirteNo, Model model) {
-		model.addAttribute("hitList", fm.hitMyImg(wirteNo));
+		try {
+			model.addAttribute("hitList", fm.hitMyImg(wirteNo));	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
