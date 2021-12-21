@@ -43,7 +43,15 @@ form {display: flex;}
 			</li>
 						
 			<li>
-				<a href="${contextPath }/member/register_form">JOIN US</a>
+				<c:choose>
+					<c:when test="${loginUser != null }">
+						<a href="${contextPath }/board/likes">LIKES</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${contextPath }/member/register_form">JOIN US</a>
+					</c:otherwise>
+				</c:choose>
+				
 			</li> 
 			
 			<li>

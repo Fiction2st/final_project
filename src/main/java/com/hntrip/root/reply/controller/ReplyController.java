@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hntrip.root.reply.dto.ReplyDTO;
@@ -18,9 +19,7 @@ public class ReplyController {
 	@Autowired ReplyService rs;
 	
 	@GetMapping(value="replyData", produces="application/json;charset=utf-8")
-	public List<ReplyDTO> replyData() {
-		//글번호, 나중에 param으로 받기
-		int writeNo = 41;
+	public List<ReplyDTO> replyData(@RequestParam int writeNo) {
 		return rs.replyData(writeNo);
 	}
 	@PostMapping(value="replyAdd", produces = "application/json; charset=utf-8")
