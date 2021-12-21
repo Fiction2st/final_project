@@ -8,29 +8,32 @@
 <meta charset="UTF-8">
 <title>HAVE A NICE TRIP!</title>
 <style type="text/css">
+*{ margin : 0;}
 .wrap{
 	width: 100%;
 	height: 710px;
 	position: fixed;
-	background-image: url("	https://p1.pxfuel.com/preview/880/413/140/mountain-nature-monolithic-part-of-the-waters-lake-travel-norway.jpg");
+	background-image: url("	https://w.wallpaperkiss.com/wimg/s/204-2043478_small.jpg");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed; 
 }
 .cnt{
 	width: 40%;
-	margin-left: auto;
-	margin-right: auto;
+	margin : 0 auto;
 }
 #t{
 	text-align: center;
 	font-size: 36pt;
 	color: white;
+	margin-top : 15%;
+	margin-bottom : 10%;
 }
 #lt{
 	text-align: center;
 	font-size: 20pt;
 	color: white;
+	margin-bottom : 10%;
 }
 #c{
 	text-align: center;
@@ -41,29 +44,14 @@ nav { display: flex; }
 nav ul { list-style: none; display: flex; justify-content: flex-end; }
 nav ul li { margin: 0 3px; padding: 10px 10px; }
 nav ul li a { text-decoration: none; color: black; opacity: 0.6; }
+nav ul li a { text-decoration: none; color: white; }
 </style>
 </head>
 <body>
+<c:import url="default/header.jsp"/>
+
 <div class="wrap" align="center">
 	<div class="back-img">
-		<nav>
-			<ul>
-				<li><a href="${contextPath }/index">HOME</a></li>
-	
-				<li>
-					<c:choose>
-						<c:when test="${loginUser != null }">
-							<a href="${contextPath }/member/logout">LOGOUT</a>
-						</c:when>
-						<c:otherwise>
-							<a href="${contextPath }/member/login">LOGIN</a>
-						</c:otherwise>
-					</c:choose>
-				</li>
-				
-			<li><a href="${contextPath }/member/register_form">JOIN US</a></li>
-			</ul>		
-		</nav>	
 		<section class="cnt">
 			<p id="t">HAVE A NICE TRIP!</p>
 			<p id="lt">떠나고 싶은 지역을 검색해보세요</p>

@@ -1,6 +1,7 @@
 package com.hntrip.root.member.controller;
 
 import java.io.IOException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hntrip.root.member.dto.MemberDTO;
 import com.hntrip.root.member.service.MemberService;
 import com.hntrip.root.common.session.MemberSessionName;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 
@@ -24,11 +24,6 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("member")
 public class MemberController implements MemberSessionName{
 	@Autowired MemberService ms;
-	
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
-	}
 	@RequestMapping("/register_form")
 	public String register_form() {
 		return "member/register";
@@ -112,6 +107,7 @@ public class MemberController implements MemberSessionName{
 			ms.autoLogin(session, response, id);
 		}
 		session.setAttribute(LOGIN, id);
+		System.out.println(session.getAttribute(LOGIN));
 		return "redirect:/index";
 	}
 	@GetMapping("logout")
@@ -131,5 +127,4 @@ public class MemberController implements MemberSessionName{
 		rs.addAttribute("id",id);
 		return "redirect:successLogin";
 	}
-
 }
