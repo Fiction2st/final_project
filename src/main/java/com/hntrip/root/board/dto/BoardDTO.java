@@ -9,6 +9,7 @@ public class BoardDTO {
 	private String city;
 	private int writeNo;
 	private String saveDate;
+
 	public String getId() {
 		return id;
 	}

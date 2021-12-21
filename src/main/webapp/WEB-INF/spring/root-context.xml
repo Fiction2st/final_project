@@ -13,6 +13,7 @@
       <property name="username" value="g2" />
       <property name="password" value="oracle" />
    </bean>   
+   
    <!-- 히카리 데이터소스 빈 등록 -->   
    <bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
       <constructor-arg ref="hikariConfig"/>
@@ -31,6 +32,5 @@
    <mybatis-spring:scan base-package="com.hntrip.root.member.mapper"/>
    <mybatis-spring:scan base-package="com.hntrip.root.reply.mapper"/>
    <mybatis-spring:scan base-package="com.hntrip.root.hit.mapper"/>
-		
 		
 </beans>

@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.hntrip.root.board.mapper.BoardMapper">
-	<resultMap type="com.hntrip.root.board.dto.BoardDTO" id="board">
+  <mapper namespace="com.hntrip.root.board.mapper.BoardMapper">
+	<resultMap type="com.hntrip.root.board.dto.BoardDTO" id="board">  
 		<id property="writeNo" column="write_no"/>
 		<result property="id" column="id"/>
 		<result property="title" column="title"/>
@@ -14,6 +14,16 @@
 		<result property="city" column="city"/>
 		<result property="saveDate" column="savedate"/>
 	</resultMap>
+
+	<select id="searchByCountry" resultMap="board">
+		select * from board where country=#{word} order by hit desc
+	</select>
+	<select id="searchByCity" resultMap="board">
+		select * from board where city=#{word} order by hit desc
+	</select>
+	<select id="searchByTitle" resultMap="board">
+		select * from board where title=#{word} order by hit desc
+	</select>
 	<select id="getMyData" resultMap="board">
 		select * from board where write_no = #{writeNo}
 	</select>
@@ -26,4 +36,5 @@
 	<select id="nowHit" resultMap="board">
 		select hit from board where write_no = #{writeNo}
 	</select>
-</mapper>
+	
+  </mapper>

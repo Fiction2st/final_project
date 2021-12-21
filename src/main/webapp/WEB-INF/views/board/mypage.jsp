@@ -118,19 +118,19 @@ function hit(){
 	var url = ""
 	if(cnt == 0){
 		if(${myHit} == true){//hit테이블에 아이디가 있을 경우(이미 좋아요 누름)
-			url = "downHit"
+			url = "downHit?writeNo="+${myData.writeNo}
 			$("#hit").removeClass("onhit")
 		}else{
-			url = "upHit"
+			url = "upHit?writeNo="+${myData.writeNo}
 			$("#hit").addClass("onhit")
 		}
 		cnt++;
 	}else { //cnt가 0이 아니면 이미 해당 페이지에서 한번 히트가 처리됬으므로 반대로 처리
 		if(${myHit} == true){
-			url = "upHit"
+			url = "upHit?writeNo="+${myData.writeNo}
 			$("#hit").addClass("onhit")
 		}else{
-			url = "downHit"
+			url = "downHit?writeNo="+${myData.writeNo}
 			$("#hit").removeClass("onhit")
 		}
 		cnt--;
