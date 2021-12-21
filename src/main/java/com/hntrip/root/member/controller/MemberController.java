@@ -2,6 +2,7 @@ package com.hntrip.root.member.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import javax.servlet.http.Cookie;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -10,7 +11,6 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -208,6 +208,7 @@ public class MemberController implements MemberSessionName{
 			ms.autoLogin(session, response, id);
 		}
 		session.setAttribute(LOGIN, id);
+		System.out.println(session.getAttribute(LOGIN));
 		return "redirect:/index";
 	}
 	@GetMapping("logout")
@@ -234,5 +235,4 @@ public class MemberController implements MemberSessionName{
 		}
 		return "member/login"; // 로그인에 오류가 발생한 경우
 	}
-		
 }
