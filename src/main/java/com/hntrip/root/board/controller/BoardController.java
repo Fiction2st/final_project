@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hntrip.root.file.service.FileService;
+import com.hntrip.root.follow.service.FollowService;
 import com.hntrip.root.hit.service.HitService;
 
 @Controller
@@ -25,17 +26,19 @@ public class BoardController {
 	@Autowired BoardService bs;
 	@Autowired FileService fs;
 	@Autowired HitService hs;
+	@Autowired FollowService fws;
 
 	@GetMapping("main")
 	public String main() {
 		return "board/main";
 	}
 	@GetMapping("mypage")
-	public String mypage(Model model, @RequestParam int writeNo,HttpSession session) {
+	public String mypage(Model model, @RequestParam int writeNo, HttpSession session) {
 		//글번호, 나중에 param으로 받기
 		bs.getMyData(model, writeNo);
 		fs.getMyImg(model, writeNo);
 		hs.getMyHit(model, writeNo, session);
+		fws.getMyFollow(model, writeNo, session);
 		return "board/mypage";
 	}
 	@GetMapping("upHit")

@@ -101,9 +101,9 @@ public class MemberController implements MemberSessionName{
 	          JSONObject resObj = (JSONObject)jsonObj.get("response");
 	          
 	          MemberDTO dto = new MemberDTO();
-//	          String id = (String)resObj.get("id");
-//	          id = "(NAVER)"+ id.substring(0,5) + id.substring(12,17) + id.substring(22,24);
-//	          System.out.println("id값 : " + id);
+	         //String id = (String)resObj.get("id");
+	         //id = "(NAVER)"+ id.substring(0,5) + id.substring(12,17) + id.substring(22,24);
+	         //System.out.println("id값 : " + id);
 	          String email = (String)resObj.get("email");
 	          System.out.println("e메일 값 : " + email);
 	          String[] split_email = email.split("@");
