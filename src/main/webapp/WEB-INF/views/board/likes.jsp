@@ -61,9 +61,9 @@ header {
 				</c:if>
 			<div class="grid-container">
 				<c:forEach var="hitImg" items="${hitList}">
-					<img
+					<a href="${contextPath}/board/mypage?writeNo=${hitImg.writeNo}"><img
 						src="${contextPath}/board/download?fileName=${hitImg.fileName}"
-						width="150" height="150">
+						width="150" height="150"></a>
 				</c:forEach>
 			</div>
 		</div>
