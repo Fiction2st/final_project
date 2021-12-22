@@ -209,7 +209,7 @@ public class MemberController implements MemberSessionName{
 		}
 		session.setAttribute(LOGIN, id);
 		System.out.println(session.getAttribute(LOGIN));
-		return "redirect:/index";
+		return "redirect:/board/main";
 	}
 	@GetMapping("logout")
 	public String logout(HttpSession session, HttpServletResponse response,		
