@@ -61,5 +61,21 @@ public class BoardServiceImpl implements BoardService{
 		fm.insert(file);
 		
 	}
+	@Override
+	public BoardDTO get(int writeNo) {
+		return bm.read(writeNo);
+	}
+	@Override
+	public boolean modify(BoardDTO board) {
+		return bm.update(board) == 1;
+	}
+	@Override
+	public boolean remove(int writeNo) {
+		return bm.delete(writeNo) == 1;
+	}
+	@Override
+	public List<BoardDTO> getList() {
+		return bm.getList();
+	}
 
 }

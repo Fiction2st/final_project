@@ -21,4 +21,5 @@ public interface BoardMapper {
 	public int update(BoardDTO board);
 	
 	public int getwriteNo(String id);
+	
 }
