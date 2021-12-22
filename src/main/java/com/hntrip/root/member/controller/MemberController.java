@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.hntrip.root.common.session.MemberSessionName;
 import com.hntrip.root.member.dto.MemberDTO;
 import com.hntrip.root.member.service.MemberService;
@@ -105,15 +101,13 @@ public class MemberController implements MemberSessionName{
 	          JSONObject resObj = (JSONObject)jsonObj.get("response");
 	          
 	          MemberDTO dto = new MemberDTO();
-/*
-	          String id = (String)resObj.get("id");
-	          id = "(NAVER)"+ id.substring(0,5) + id.substring(12,17) + id.substring(22,24);
-	          System.out.println("id값 : " + id);
-*/
+	         //String id = (String)resObj.get("id");
+	         //id = "(NAVER)"+ id.substring(0,5) + id.substring(12,17) + id.substring(22,24);
+	         //System.out.println("id값 : " + id);
 	          String email = (String)resObj.get("email");
 	          System.out.println("e메일 값 : " + email);
 	          String[] split_email = email.split("@");
-	          String naverId = "(NAVER)" + split_email[0];
+		      String naverId = "(NAVER)" + split_email[0];
 	          dto.setId(naverId); dto.setEmail(email);
 	          ms.apiLogin(dto);
 	          session.setAttribute(LOGIN, naverId);

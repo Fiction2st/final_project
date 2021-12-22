@@ -10,19 +10,16 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 <style type="text/css">
 *{
-	margin: 0; padding: 0; text-decoration: none;
+	margin: 0; padding: 0; text-decoration: none !important;
 }
-body {
-	background: #000;
+.wrap {
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-size: 14px;
-	color: #000;
 	display: flex;
 	justify-content: center; /* 좌우 기준 중앙정렬 */
 	align-items: center; /* 위아래 기준 중앙정렬 */
 	min-height: 110vh;
 }
-
 .swiper {
 	width: 1200px;
 	padding-top: 50px;
@@ -42,7 +39,7 @@ img {
 }
 
 .content {
-	width: 400px; height: 400px; color: white; background: black;
+	width: 450px; height: 450px; color: white; background: black;
 	position: relative; left: -270px; top: -75px; z-index: 10;
 	padding: 25px; box-shadow: 0 0 30px gray;
 }
@@ -55,11 +52,7 @@ table tr td:nth-child(2) {
 	width: 360px; word-break: break-all;
 }
 table.contentData tr:last-child {
-	height: 210px; vertical-align: top;
-}
-table.contentData caption {
-	 height: 30px; margin-bottom: 20px;
-	 font-weight: bold; font-size: 18pt;
+	height: 180px; vertical-align: top;
 }
 
 div.comment { text-align: right; display: none; }
@@ -81,20 +74,18 @@ div.comment a:hover {
 	background-color: black; /*스크롤바 트랙 색상*/
 }
 table.commentData { text-align: center; }
-/*table.commentData tr td {
-	border-bottom: 1px solid #6F6F6F; line-height: 30px;
-}*/
 table.commentData tr td:nth-child(2) { text-align: left; }
 
-.btnGroup, .commentWrite { text-align: center; }
-.btn {
-	color: black; font-size: 20px; font-weight: bold; background: white;
+div.btnGroup, div.commentWrite { text-align: center; }
+a.btn {
+	color: black !important; font-size: 18px; font-weight: bold; background: white;
 	display: inline-block; padding: 10px 20px; border-radius: 20px;
 }
-.btn:hover {
+a.onhit { background: gray; color: white !important; }
+a.btn:hover {
 	background: gray; color: white;
 }
-.onhit { background: gray; color: white; }
+
 .commentWrite { display: none; }
 .commentWrite input[type="text"] {
 	border: none; border-bottom: 1px solid white;
@@ -108,6 +99,17 @@ table.commentData tr td:nth-child(2) { text-align: left; }
 .commentWrite a:hover {
 	background: gray; color: white;
 }
+
+a.fbtn {
+	color: black !important; background: white; border-radius: 10px;
+	padding: 4px 7px; font-size: 12pt; text-decoration: none;
+}
+a.fbtn:hover {
+	color: white !important; background: gray;
+}
+a.onfollow {
+	color: white !important; background: gray;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -115,33 +117,38 @@ table.commentData tr td:nth-child(2) { text-align: left; }
 //좋아요
 var cnt = 0;
 function hit(){
-	var url = ""
+	let url = ""
 	if(cnt == 0){
 		if(${myHit} == true){//hit테이블에 아이디가 있을 경우(이미 좋아요 누름)
-			url = "downHit?writeNo="+${myData.writeNo}
+			url = "downHit"
 			$("#hit").removeClass("onhit")
 		}else{
-			url = "upHit?writeNo="+${myData.writeNo}
+			url = "upHit"
 			$("#hit").addClass("onhit")
 		}
 		cnt++;
 	}else { //cnt가 0이 아니면 이미 해당 페이지에서 한번 히트가 처리됬으므로 반대로 처리
 		if(${myHit} == true){
-			url = "upHit?writeNo="+${myData.writeNo}
+			url = "upHit"
 			$("#hit").addClass("onhit")
 		}else{
-			url = "downHit?writeNo="+${myData.writeNo}
+			url = "downHit"
 			$("#hit").removeClass("onhit")
 		}
 		cnt--;
 	}
-	
+	url += "?writeNo="+${myData.writeNo};
 	$.ajax({
 		url : url,
 		type : "get",
 		success : function(data){
 			$("#hit").text("♥ "+data)
 			console.log("성공")
+			if(url == "downHit?writeNo="+${myData.writeNo}){
+				alert('좋아요가 취소되었습니다.')
+			}else{
+				alert('좋아요가 등록되었습니다.')
+			}
 		},
 		error : function(){
 			alert("문제 발생!")
@@ -151,7 +158,7 @@ function hit(){
 //댓글 리스트
 function commentList(){
 	$.ajax({
-		url : "replyData",
+		url : "replyData?writeNo="+${myData.writeNo},
 		type : "GET",
 		dataType : "json",
 		success : function(reply) {
@@ -182,10 +189,10 @@ function commentClose() {
 }
 //댓글 등록
 function commentAdd(){
-	var no = 41; //현재 글번호 받아오기
-	var id = 'jjj';//현재 로그인한 아이디 받아오기
-	var cmt = $("#commentText").val();
-	var form = {writeNo : no, id : id, content : cmt}
+	let no = ${myData.writeNo}; //현재 글번호 받아오기
+	let id = "${loginUser}";//현재 로그인한 아이디 받아오기
+	let cmt = $("#commentText").val();
+	let form = {writeNo : no, id : id, content : cmt}
 	console.log(form)
 	$.ajax({
 		url : "replyAdd", type : "POST",
@@ -206,9 +213,62 @@ function commentAdd(){
 		}
 	})
 }
+//팔로우
+var fcnt = 0;
+function follow(){
+	let url = ""
+		if(fcnt == 0){
+			if(${myFollow} == true){//follow테이블에 아이디가 있을 경우(이미 팔로우 누름)
+				url = "delFollow"
+				$("#follow").removeClass("onfollow")
+			}else{
+				url = "addFollow"
+				$("#follow").addClass("onfollow")
+			}
+			fcnt++;
+		}else { //fcnt가 0이 아니면 이미 해당 페이지에서 한번 팔로우가 처리됬으므로 반대로 처리
+			if(${myFollow} == true){
+				url = "addFollow"
+				$("#follow").addClass("onfollow")
+			}else{
+				url = "delFollow"
+				$("#follow").removeClass("onfollow")
+			}
+			fcnt--;
+		}
+	let id = "${loginUser}";//현재 로그인한 아이디 받아오기
+	let fid = "${myData.id}"; //현재 글 쓴 아이디 받아오기
+	let form = {id : id, followId : fid}
+		$.ajax({
+			url : url,
+			type : "POST",
+			data : JSON.stringify(form),
+			dataType : 'json',
+			contentType : "application/json; charset=utf-8",
+			success : function(result){
+				console.log("ajax follow 성공")
+				if(result == true){
+					if(url == "delFollow"){
+						alert(fid+'님을 팔로우 취소하셨습니다.')
+					}else{
+						alert(fid+'님을 팔로우 하셨습니다.')
+					}
+				}else {
+					console.log("실패")
+				}
+			},
+			error : function(){
+				alert("문제 발생!")
+			}
+		})
+}
 </script>
 </head>
 <body>
+<header>
+<c:import url="../default/header.jsp" />
+</header>
+<div class="wrap">
 	<div class="swiper">
 		<div class="swiper-wrapper">
 			<!-- div 파일 갯수만큼 for문 -->
@@ -226,7 +286,23 @@ function commentAdd(){
 		<div class="contentBox">
 			<!-- 글 내용 화면 -->
 			<table class="contentData">
-				<caption>${myData.country}</caption>
+				<tr>
+					<td>ID</td>
+					<td>
+						${myData.id}&nbsp;&nbsp;
+						<c:if test="${loginUser != myData.id}">
+							<c:if test="${myFollow == false}">
+								<a href="javascript:void(0)" onclick="follow()" id="follow" class="fbtn">follow</a>
+							</c:if>
+							<c:if test="${myFollow == true}">
+								<a href="javascript:void(0)" onclick="follow()" id="follow" class="fbtn onfollow">follow</a>
+							</c:if>
+						</c:if>
+					</td>
+				</tr>
+				<tr>
+					<td>COUNTRY</td> <td>${myData.country}</td>
+				</tr>
 				<tr>
 					<td>CITY</td> <td>${myData.city}</td>
 				</tr>
@@ -259,14 +335,14 @@ function commentAdd(){
 			</c:if>
 			&nbsp;&nbsp;&nbsp;
 			<a onclick="commentList()" href="javascript:void(0)" class="btn">comment</a>&nbsp;&nbsp;&nbsp;
-			<a href="${contextPath}/board/main" class="btn">return</a>
+			<a href="${contextPath}/board/main" class="btn">map</a>
 		</div>
 		<div class="commentWrite">
 			<input type="text" id="commentText">&nbsp;&nbsp;
 			<a onclick="commentAdd()" href="javascript:void(0)">등록</a>
 		</div>
 	</div><!-- content end -->
-	
+</div><!-- wrap end -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
 	var swiper = new Swiper(".swiper", {
