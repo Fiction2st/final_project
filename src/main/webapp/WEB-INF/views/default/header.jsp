@@ -4,11 +4,6 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript">
-function submit(){
-	submit(country);
-}
-</script>
 <head>
 <meta charset="UTF-8">
 <title></title>
@@ -30,7 +25,6 @@ form {display: flex;}
 	<nav>
 		<ul>
 			<li><a href="${contextPath }/index">HOME</a></li>
-		
 			<li>
 				<c:choose>
 					<c:when test="${loginUser != null }">

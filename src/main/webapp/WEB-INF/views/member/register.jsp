@@ -194,8 +194,14 @@
 %>
 </head>
 <body>
+<c:import url="${contextPath }/index_2"/>
+<div class="form-group mb-4">
+ 
 <div align="center">
+
 	<h2>회원가입 페이지</h2>
+	
+						
 	<form id="reg_form" action="register" method="post">
 		<table border="1">
 			<tr>
@@ -255,6 +261,7 @@
 		<input type="button" onclick="chk_form()" value="회원가입">
 		<input type="button" onclick="location.href='${contextPath}/index'" value="취소">
 	</form>
+	</div>
 </div>
 </body>
 </html>
