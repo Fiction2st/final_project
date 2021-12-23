@@ -177,6 +177,9 @@ body {
 </style>
 </head>
 <body>
+
+
+
 	<header>
 		<c:import url="../default/header.jsp" />
 	</header>
@@ -282,6 +285,7 @@ body {
 			<li class="date1"><a href="#">December 2019</a></li>
 			<li class="date1"><a href="#">December 2019</a></li>
 			<li class="date1"><a href="#">December 2019</a></li>
+			
 		</ul>
 		
 	</div>
@@ -391,7 +395,20 @@ body {
 	<!--등록하기 ------------------------------------------------->
 	<div class="rbtn">
 		<h3>
-			<a href="${contextPath }/board/register">add</a>
+		
+			<a href="${contextPath }/board/register">add
+						<c:forEach items="${ info}" var="info">
+   ${ info.id}
+   ${ info.saveDate}
+   ${ info.city}
+   ${ info.country}
+   <hr>
+   <c:if test="${ info.country=='한국'}">
+      날짜 : ${ info.saveDate}
+   </c:if>
+   <hr>
+</c:forEach>
+			</a>
 		</h3>
 	</div>
 

@@ -15,4 +15,6 @@ public interface BoardService {
    public int downHit(int writeNo);
    public void registerSave(MultipartHttpServletRequest mul,
          HttpServletRequest request);
+   
+   public void getMember(String id, Model model);
 }

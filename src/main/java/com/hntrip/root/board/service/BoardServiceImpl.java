@@ -96,4 +96,10 @@ public class BoardServiceImpl implements BoardService{
       fm.insert(file);
       
    }
+   public void getMember(String id, Model model) {
+	      
+	      model.addAttribute("info", bm.getMember(id));
+	      //List<BoardDTO> list = bm.getMember(id);
+	      //System.out.println(list.size());
+	   }
 }
