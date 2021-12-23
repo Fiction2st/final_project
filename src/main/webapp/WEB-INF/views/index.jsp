@@ -8,11 +8,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Diagoona Template - Contact page</title>
+<title>HNTRIP Home</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" type="text/css" /> <!-- https://fonts.google.com/ -->
 <link href="${contextPath }/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> <!-- https://getbootstrap.com/ -->
 <link href="${contextPath }/resources/fontawesome/css/all.min.css" rel="stylesheet" type="text/css"/> <!-- https://fontawesome.com/ -->
 <link href="${contextPath }/resources/css/templatemo-diagoona.css" rel="stylesheet" />
+<link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
 </head>
 <body>
     <div class="tm-container">
@@ -22,7 +25,7 @@
                     <div class="tm-site-header media">
                         <i class="fas fa-umbrella-beach fa-3x mt-1 tm-logo"></i>
                         <div class="media-body">
-                            <h1 class="tm-sitename text-uppercase">HN TRIP</h1>
+                            <h1 class="tm-sitename text-uppercase">HNTRIP</h1>
                             <p class="tm-slogon">new travel diary</p>
                         </div>        
                     </div>
@@ -42,11 +45,9 @@
                                 <li class="nav-item">
 									<c:choose>
 										<c:when test="${loginUser != null }">
-											<a class="nav-link tm-nav-link" href="${contextPath }/member/logout">LOGOUT</a>
+											<a class="nav-link tm-nav-link" href="${contextPath }/board/main">MY PAGE</a>
 										</c:when>
-										<c:otherwise>
-											<a class="nav-link tm-nav-link" href="${contextPath }/member/login">LOGIN</a>
-										</c:otherwise>
+										<c:otherwise></c:otherwise>
 									</c:choose>
                                 </li>
                                 <li class="nav-item">
@@ -55,10 +56,20 @@
 											<a class="nav-link tm-nav-link" href="${contextPath }/board/likes">LIKES</a>
 										</c:when>
 										<c:otherwise>
-											<a class="nav-link tm-nav-link" href="${contextPath }/member/register_form">JOIN US</a>
+											<a class="nav-link tm-nav-link trigger" href="${contextPath }/member/register_form">JOIN US</a>
 										</c:otherwise>
 									</c:choose>                         
-                                </li>                            
+                                </li>
+                                <li class="nav-item">
+									<c:choose>
+										<c:when test="${loginUser != null }">
+											<a class="nav-link tm-nav-link" href="${contextPath }/member/logout">LOGOUT</a>
+										</c:when>
+										<c:otherwise>
+											<a class="nav-link tm-nav-link" href="${contextPath }/member/login">LOGIN</a>
+										</c:otherwise>
+									</c:choose>
+                                </li>           
                             </ul>                            
                         </div>                        
                     </nav>
@@ -69,8 +80,10 @@
                 <div class="tm-col-left"></div>
                 <main class="tm-col-right tm-contact-main"> <!-- Content -->
                     <section class="tm-content tm-contact">
-                        <h2 class="mb-4 tm-content-title">안뇽</h2>
-                        <p class="mb-85">Etiam et egestas arcu. Fusce congue quis elit vitae commodo. Cras neque mauris, vehicula in ipsum sit amet, faucibus aliquam arcu.</p>
+                        <h2 class="mb-4 tm-content-title">당신의 여행을 기록하세요</h2>
+                        <p class="mb-85">여행의 특별한 순간, 기억, 감정을 기록하세요<br> 다른 사람과 여행 경험을 공유하세요
+                        		<br>여행의 추억을 간직하세요<br>HNTRIP과 행복한 추억여행 되시길 바랍니다.</p>
+                        <h4 class="mb-85">"HAVE A NICE TRIP"</h4>
                     </section>
                 </main>
             </div>

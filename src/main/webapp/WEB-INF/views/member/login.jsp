@@ -12,11 +12,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Diagoona Template - Contact page</title>
+<title>HNTRIP LOGIN</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" type="text/css" /> <!-- https://fonts.google.com/ -->
 <link href="${contextPath }/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> <!-- https://getbootstrap.com/ -->
 <link href="${contextPath }/resources/fontawesome/css/all.min.css" rel="stylesheet" type="text/css"/> <!-- https://fontawesome.com/ -->
 <link href="${contextPath }/resources/css/templatemo-diagoona.css" rel="stylesheet" />
+<link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
 <!-- 네이버 로그인 -->
 <script
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
@@ -70,16 +73,6 @@
                                     <a class="nav-link tm-nav-link" href="${contextPath }/index">Home</a>
                                 </li>
                                 <li class="nav-item">
-									<c:choose>
-										<c:when test="${loginUser != null }">
-											<a class="nav-link tm-nav-link" href="${contextPath }/member/logout">LOGOUT</a>
-										</c:when>
-										<c:otherwise>
-											<a class="nav-link tm-nav-link" href="${contextPath }/member/login">LOGIN</a>
-										</c:otherwise>
-									</c:choose>
-                                </li>
-                                <li class="nav-item">
                                      <c:choose>
 										<c:when test="${loginUser != null }">
 											<a class="nav-link tm-nav-link" href="${contextPath }/board/likes">LIKES</a>
@@ -88,7 +81,17 @@
 											<a class="nav-link tm-nav-link" href="${contextPath }/member/register_form">JOIN US</a>
 										</c:otherwise>
 									</c:choose>                         
-                                </li>                            
+                                </li>
+                                <li class="nav-item">
+									<c:choose>
+										<c:when test="${loginUser != null }">
+											<a class="nav-link tm-nav-link" href="${contextPath }/member/logout">LOGOUT</a>
+										</c:when>
+										<c:otherwise>
+											<a class="nav-link tm-nav-link" href="${contextPath }/member/login">LOGIN</a>
+										</c:otherwise>
+									</c:choose>
+                                </li>                          
                             </ul>                            
                         </div>                        
                     </nav>
@@ -123,8 +126,8 @@
                 <div class="tm-col-left"></div>
                 <main class="tm-col-right tm-contact-main"> <!-- Content -->
                     <section class="tm-content tm-contact">
-                        <h2 class="mb-4 tm-content-title">안뇽</h2>
-                        <p class="mb-85">Etiam et egestas arcu. Fusce congue quis elit vitae commodo. Cras neque mauris, vehicula in ipsum sit amet, faucibus aliquam arcu.</p>
+                        <h2 class="mb-4 tm-content-title">LOGIN</h2>
+                        <p class="mb-85">아직 회원가입 하지 않으셨나요?<br>HNTRIP과 여행 추억을 공유해주세요</p>
 						<form id="contact-form" action="loginCheck" method="POST">
                             <div class="form-group mb-4">
                                 <input type="text" name="id" class="form-control" placeholder="Input ID" required="" />
@@ -132,7 +135,7 @@
                             <div class="form-group mb-4">
                                 <input type="password" name="pwd" class="form-control" placeholder="Input PASSWORD" required="" />
                             </div>
-								<input type="checkbox" name="autoLogin">Auto Login                            
+								<input type="checkbox" name="autoLogin">&nbsp;&nbsp;Auto Login                            
                             <div class="text-right">
                                 <button type="submit" class="btn btn-big btn-primary">LOGIN</button><br><br>
                             		<a href="<%=kakaoApiUrl%>"> 

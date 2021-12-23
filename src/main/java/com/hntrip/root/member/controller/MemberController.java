@@ -134,7 +134,7 @@ public class MemberController implements MemberSessionName{
 	public String register(MemberDTO member){
 		int result = ms.register(member);
 		if(result==1)
-			return "redirect:/login";
+			return "redirect:/member/login";
 		return "redirect:register_form";
 	}
 	
