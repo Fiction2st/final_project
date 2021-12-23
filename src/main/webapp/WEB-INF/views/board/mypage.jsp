@@ -12,6 +12,10 @@
 *{
 	margin: 0; padding: 0; text-decoration: none !important;
 }
+header {
+	width: 100%;
+	height: 20%;
+}
 .wrap {
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-size: 14px;
@@ -89,7 +93,7 @@ a.btn:hover {
 .commentWrite { display: none; }
 .commentWrite input[type="text"] {
 	border: none; border-bottom: 1px solid white;
-	background: black; color: white; width: 300px; height: 30px;
+	background: black; color: white; width: 70%; height: 30px;
 	word-break: break-all;
 }
 .commentWrite a {

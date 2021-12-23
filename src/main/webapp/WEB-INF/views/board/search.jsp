@@ -15,16 +15,13 @@
 
 .wrap {
 	width: 100%;
-	background-color: black;
 }
 header{
 	width: 100%; height: 20%;
 }
 .view{
-	width: 75%; height: 100%; margin:0 auto; padding: 10%; ;
+	width: 75%; height: 100%; margin:0 auto; padding: 10%; color:white;
 }
-.tab { width: 100%; height:10%; }
-.content{ width: 100%; height: 90%; display:flex; color: white;}
 .grid-container {
   display: grid;
   grid-template-columns: 150px 150px 150px 150px 150px; /* 행 간격 */
@@ -40,7 +37,6 @@ header{
 			<c:import url="../default/header.jsp" />
 		</header>
 		<div class="view">		
-			<div class="content">
 				<c:if test="${filelist.size() == 0 || filelist == null}">
 					검색 결과가 없습니다.
 				</c:if>
@@ -53,6 +49,5 @@ header{
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
