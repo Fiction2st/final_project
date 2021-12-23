@@ -38,6 +38,16 @@ public class BoardController {
    public String register() {
       return "/board/register";
    }
+   
+   @GetMapping("info")
+   public String info( Model model) {
+      String id = "jjj";
+      bs.getMember(id, model);
+      return "/board/info";
+   }
+   
+   
+   
    @PostMapping("registerSave")
    public String registerSave(MultipartHttpServletRequest mul,
          HttpServletRequest request) {

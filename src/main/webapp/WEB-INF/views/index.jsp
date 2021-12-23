@@ -42,14 +42,14 @@
                                 <li class="nav-item">
                                     <a class="nav-link tm-nav-link" href="${contextPath }/index">Home</a>
                                 </li>
-                                <li class="nav-item">
-									<c:choose>
-										<c:when test="${loginUser != null }">
+								<c:choose>
+									<c:when test="${loginUser != null }">
+										<li class="nav-item">
 											<a class="nav-link tm-nav-link" href="${contextPath }/board/main">MY PAGE</a>
-										</c:when>
-										<c:otherwise></c:otherwise>
-									</c:choose>
-                                </li>
+										</li>
+									</c:when>
+									<c:otherwise></c:otherwise>
+								</c:choose>
                                 <li class="nav-item">
                                      <c:choose>
 										<c:when test="${loginUser != null }">

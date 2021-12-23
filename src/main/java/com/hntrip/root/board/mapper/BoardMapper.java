@@ -15,4 +15,5 @@ public interface BoardMapper {
    public BoardDTO nowHit(int writeNo);
    public void insert(BoardDTO board);
    public int getwriteNo(String id);
+   public List<BoardDTO> getMember(String id);
 }
