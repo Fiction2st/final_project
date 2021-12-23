@@ -131,11 +131,17 @@ public class MemberController implements MemberSessionName{
 	}
 	
 	@RequestMapping("/register")
-	public String register(MemberDTO member){
+	public String register(MemberDTO member, Model model){
 		int result = ms.register(member);
-		if(result==1)
-			return "redirect:/member/login";
-		return "redirect:register_form";
+		if(result==1) {
+			model.addAttribute("msg", "회원가입 되었습니다!!");
+			model.addAttribute("url","/root/member/login");
+			return "/member/loginfailed";
+		}else {
+			model.addAttribute("msg", "회원가입에 실패했습니다. 다시 입력해주세요.");
+			model.addAttribute("url","/root/member/register_form");
+			return "/member/loginfailed";
+		}
 	}
 	
 	@GetMapping(value="chkId", produces="application/json; charset=utf-8")
@@ -234,5 +240,61 @@ public class MemberController implements MemberSessionName{
 			return "/board/main";
 		}
 		return "member/login"; // 로그인에 오류가 발생한 경우
+	}
+	
+	@GetMapping("findInfo")
+	public String findInfo() {
+		return "/member/findInfo";
+	}
+	
+	@RequestMapping("findMemberInfo")
+	public String findMemberInfo(@RequestParam String email, HttpServletRequest request, Model model) {
+		System.out.println("입력된 이메일 주소 : " + email);
+		MemberDTO dto = new MemberDTO();
+		dto = ms.getMemInfo(email);
+		if(dto == null) {
+			model.addAttribute("msg", "등록된 이메일이 없습니다. 다시 확인해주세요.");
+			model.addAttribute("url","/root/member/findInfo");
+			return "/member/loginfailed";
+		}else {
+			String id = dto.getId();
+			StringBuffer sb = new StringBuffer();
+			sb.append("<div style=\"background-image : url('https://d1blyo8czty997.cloudfront.net/review-photos/97199/2128/800x800/1527300111.jpg');\r\n"
+					+ "				height : 500px; width : 500px; text-align: center\">");
+			sb.append("<p style=\"font-size:18px; color:white; padding-top: 180px\">");
+			sb.append("여행자를 위한 다이어리 HNTrip 이메일 인증코드 입니다.</p>");
+			sb.append("<p style=\"font-size:22px; color:white;\">");
+			sb.append("가입된 ID : " + id + " 입니다.</p>");
+			sb.append("<p style=\"font-size:18px; color:white;\">");
+			sb.append("비밀번호 변경은 아래 링크에서 가능합니다. </p><br>");
+			sb.append("<a style=\"color:white; font-size:18px;\" href=\"http://localhost:8085/root/member/changePwd\">비밀번호 변경하기</a>");
+			sb.append("</div>");
+			
+			String str = sb.toString();
+			ms.sendMail(email,"HNTrip 회원정보 찾기 관련 메일입니다.", str);
+			model.addAttribute("msg", "입력하신 주소로 메일이 발송되었습니다. 메일을 확인해주세요.");
+			model.addAttribute("url","/root/member/login");
+			return "/member/loginfailed";
+		}
+	}
+	
+	@GetMapping("changePwd")
+	public String changePwd() {
+		return "member/changePwd";
+	}
+	
+	@RequestMapping("changeMemPwd")
+	public String changeMemPwd(@RequestParam String id, @RequestParam String pwd, Model model) {
+		int result = ms.updatePwd(id, pwd);
+		if(result == 1) {
+			model.addAttribute("msg", "비밀번호가 성공적으로 변경되었습니다.");
+			model.addAttribute("url","/root/member/login");
+			return "/member/loginfailed";
+		}else {
+			model.addAttribute("msg", "비밀번호 변경에 실패했습니다! 다시 시도해주세요.");
+			model.addAttribute("url","/root/member/changePwd");
+			return "/member/loginfailed";
+		}
+			
 	}
 }

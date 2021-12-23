@@ -137,6 +137,7 @@
                             </div>
 								<input type="checkbox" name="autoLogin">&nbsp;&nbsp;Auto Login                            
                             <div class="text-right">
+                            	<a style="padding-top:15px; padding-right : 50px; color:white; font-family: 'Jeju Gothic', sans-serif;" href="${contextPath}/member/findInfo">아이디 / 비밀번호 찾기</a>
                                 <button type="submit" class="btn btn-big btn-primary">LOGIN</button><br><br>
                             		<a href="<%=kakaoApiUrl%>"> 
 									<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222" /></a>

@@ -285,4 +285,19 @@ public class MemberServiceImpl implements MemberService{
 		    }
 			return dto;
 		}
+		@Override
+		public MemberDTO getMemInfo(String email) {
+			MemberDTO dto = new MemberDTO();
+			dto = mapper.getMemInfo(email);
+			return dto;
+		}
+		@Override
+		public int updatePwd(String id, String pwd) {
+			String securePwd = encoder.encode(pwd);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("id", id);
+			map.put("pwd", securePwd);
+			int result = mapper.updatePwd(map);
+			return result;
+		}
 }

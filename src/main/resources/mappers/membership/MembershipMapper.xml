@@ -33,4 +33,12 @@
 	<insert id="apiLogin">
 		insert into membership(no,id,email) values(membership_seq.nextval, #{id}, #{email})
 	</insert>
+	
+	<select id="getMemInfo" resultMap="member">
+		select * from membership where email = #{email}
+	</select>
+	
+	<update id="updatePwd">
+		update membership set pwd = #{pwd} where id = #{id}
+	</update>
  </mapper>
