@@ -10,12 +10,10 @@
 <style type="text/css">
 * {
 	margin: 0;
-	padding: 0;
 }
 
 .wrap {
 	width: 100%;
-	background-color: black;
 }
 
 header {
@@ -23,18 +21,18 @@ header {
 	height: 20%;
 }
 .section1{
-	width:75%;
-	height:10%;
-	padding: 7% 0% 0% 15%;	
+	width:55%;
+	height:20%;
 	color: white;
+	margin-top: 80px;
+	margin-left: 11px;
 }
 .view {
-	width: 75%;
+	width: 55%;
 	height: 85%;
 	margin: 0 auto;
 	padding: 1%;
 	color: white;
-
 }
 
 .grid-container {
@@ -52,10 +50,10 @@ header {
 		<header>
 			<c:import url="../default/header.jsp" />
 		</header>
-		<div class="section1">
-			<h1>좋아요 목록</h1>
-		</div>
 		<div class="view">
+			<div class="section1">
+				<h1>좋아요 목록</h1>
+			</div>
 			<c:if test="${hitList.size() == 0 || hitList == null}">
 					좋아요를 누른 게시물이 없습니다.
 				</c:if>

@@ -209,7 +209,7 @@ public class MemberController implements MemberSessionName{
 		}
 		session.setAttribute(LOGIN, id);
 		System.out.println(session.getAttribute(LOGIN));
-		return "redirect:/index";
+		return "redirect:/board/main";
 	}
 	@GetMapping("logout")
 	public String logout(HttpSession session, HttpServletResponse response,		
@@ -231,7 +231,7 @@ public class MemberController implements MemberSessionName{
 		String id = dto.getId();
 		if(ms.apiLogin(dto) != 0 || ms.apiLogin(dto) == 2 ) {
 			session.setAttribute(LOGIN, id);
-			return "index";
+			return "/board/main";
 		}
 		return "member/login"; // 로그인에 오류가 발생한 경우
 	}

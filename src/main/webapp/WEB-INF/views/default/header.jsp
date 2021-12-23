@@ -4,11 +4,6 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript">
-function submit(){
-	submit(country);
-}
-</script>
 <head>
 <meta charset="UTF-8">
 <title></title>
@@ -16,9 +11,9 @@ function submit(){
  
 <style type="text/css">
 *{margin : 0;}
-body{ 	background-color: black;
+body{ background-color: black;
 }
-nav { display: flex; position: fixed;  z-index: 10;}
+nav { display: flex; position: fixed;  z-index: 10; background: red; }
 nav ul { list-style: none; display: flex; justify-content: flex-end; }
 nav ul li { margin: 0 3px; display: flex; padding: 10px 10px; }
 nav ul li a { text-decoration: none; color: white;}
@@ -30,7 +25,6 @@ form {display: flex;}
 	<nav>
 		<ul>
 			<li><a href="${contextPath }/index">HOME</a></li>
-		
 			<li>
 				<c:choose>
 					<c:when test="${loginUser != null }">

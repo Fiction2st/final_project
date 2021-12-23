@@ -10,7 +10,11 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 <style type="text/css">
 *{
-	margin: 0; padding: 0; text-decoration: none;
+	margin: 0; padding: 0; text-decoration: none !important;
+}
+header {
+	width: 100%;
+	height: 20%;
 }
 .wrap {
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -78,11 +82,10 @@ table.commentData tr td:nth-child(2) { text-align: left; }
 
 div.btnGroup, div.commentWrite { text-align: center; }
 a.btn {
-	color: black; font-size: 18px; font-weight: bold; background: white;
+	color: black !important; font-size: 18px; font-weight: bold; background: white;
 	display: inline-block; padding: 10px 20px; border-radius: 20px;
-	text-decoration: none;
 }
-a.onhit { background: gray; color: white; }
+a.onhit { background: gray; color: white !important; }
 a.btn:hover {
 	background: gray; color: white;
 }
@@ -90,7 +93,7 @@ a.btn:hover {
 .commentWrite { display: none; }
 .commentWrite input[type="text"] {
 	border: none; border-bottom: 1px solid white;
-	background: black; color: white; width: 300px; height: 30px;
+	background: black; color: white; width: 70%; height: 30px;
 	word-break: break-all;
 }
 .commentWrite a {
@@ -101,15 +104,15 @@ a.btn:hover {
 	background: gray; color: white;
 }
 
-.fbtn {
-	color: black; background: white; border-radius: 10px;
+a.fbtn {
+	color: black !important; background: white; border-radius: 10px;
 	padding: 4px 7px; font-size: 12pt; text-decoration: none;
 }
-.fbtn:hover {
-	color: white; background: gray; text-decoration: none;
+a.fbtn:hover {
+	color: white !important; background: gray;
 }
-.onfollow {
-	color: white; background: gray; text-decoration: none;
+a.onfollow {
+	color: white !important; background: gray;
 }
 </style>
 
