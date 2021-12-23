@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style type="text/css">
-*{ margin: 0; padding: 0; color: white; }
+*{ margin: 0; padding: 0; }
 /* 메인 */
 form {
 	width: 500px;
@@ -20,6 +20,7 @@ form {
 	margin: 0 auto;
 	background: #514d4b;
 	text-align: center;
+	color: white; 
 }
 .a {
 	text-align: center;
@@ -35,6 +36,7 @@ form {
 	border: 2px solid #fff;
 	border-radius: 5px;
 	text-align: center;
+	color: white;
 }
 .a>dd:nth-of-type(1)>input { border: none; }
 form input[type=submit]{
@@ -42,7 +44,7 @@ form input[type=submit]{
 	color: black; border-radius: 10px; 
 	text-align: center;
 }
-.a>dd:last-child>img { width: 100px; height: 100px; }
+.a>dd:last-child>img { width: 100px; height: 100px; margin-left: 5px; }
 /* 드래그앤 드롭 */
 .dragAndDropDiv {
 	border: 2px dashed #92AAB0;
@@ -120,6 +122,7 @@ form input[type=submit]{
 	cursor: pointer;
 	vertical-align: top
 }
+
 /* 데이트피커 */
 </style>
 
@@ -190,7 +193,7 @@ form input[type=submit]{
 	                      ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
 	                      ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
 	                      ,minDate: "-10Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-	                      ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
+	                      ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
 	                  });
 	       
 	                  //input을 datepicker로 선언
