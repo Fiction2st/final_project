@@ -47,4 +47,9 @@
    select max(write_no) from board where id= #{id}
    
    </select>
+   <select id="getMember" resultMap="board">
+      select * from board where id = #{id}
+   </select>
+   
+   
   </mapper>

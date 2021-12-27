@@ -151,7 +151,7 @@ p { line-height: 1.9; }
     box-shadow: 0 0 1px rgba(255,255,255,.8);
 }
 
-.tm-content-title { font-size: 1.5rem; }
+.tm-content-title { font-size: 1.5rem; font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif;}
 hr { border-top: 1px solid white; }
 
 .btn {
@@ -194,6 +194,40 @@ hr { border-top: 1px solid white; }
 .tm-service-img { margin-right: 25px; }
 .tm-service-img-r { margin-left: 25px; }
 
+/* Register Table */
+table {border-collapse : separate; border-spacing : 0 10px;}
+.tbtr { font-size : 1.0rem; margin-bottom: 15px; font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif; width : 120px;}
+.tb-in{
+	font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif;
+	background-color : #212121;
+	color : #F6F6F6;
+	width : 180px;
+	height : 40px;
+	border-top : none;
+	border-left : none;
+	border-right : none;
+	border-bottom : 3px solid #F6F6F6;}
+.tb-pwd{
+	font-family : sans-serif;
+	background-color : #212121;
+	color : #F6F6F6;
+	width : 180px;
+	height : 40px;
+	border-top : none;
+	border-left : none;
+	border-right : none;
+	border-bottom : 3px solid #F6F6F6;
+}
+.tb-btn {
+	font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif;
+	font-size: 0.8rem;
+	color : white;
+	background-color: #212121;
+	height : 40px;
+}
+.tb-chk{
+	width : 160px;
+}
 /* Contact */
 .form-control,
 textarea {    
@@ -219,7 +253,7 @@ textarea {
     outline: none;
 }
 
-.mb-85 { margin-bottom: 85px; }
+.mb-85 { margin-bottom: 15px; font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif;}
 .tm-contact-main { max-width: 690px; }
 
 .tm-contact {
@@ -327,8 +361,8 @@ textarea {
 
 @media (max-width: 460px) {
     .tm-logo { margin-right: 15px; }
-    .tm-sitename { font-size: 1.8rem; }
-    .tm-slogon { font-size: 0.8rem; }
+    .tm-sitename { font-size: 1.8rem;}
+    .tm-slogon { font-size: 0.8rem;}
 }
 
 @media (max-width: 450px), (min-width: 768px) and (max-width: 830px), (min-width: 992px) and (max-width: 1040px) {

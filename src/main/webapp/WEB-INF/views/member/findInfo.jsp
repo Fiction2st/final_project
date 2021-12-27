@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="java.net.URLEncoder"%>
-<%@ page import="java.security.SecureRandom"%>
-<%@ page import="java.math.BigInteger"%>
-
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -12,7 +8,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>HNTRIP LOGIN</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" type="text/css" /> <!-- https://fonts.google.com/ -->
 <link href="${contextPath }/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> <!-- https://getbootstrap.com/ -->
 <link href="${contextPath }/resources/fontawesome/css/all.min.css" rel="stylesheet" type="text/css"/> <!-- https://fontawesome.com/ -->
@@ -20,32 +15,7 @@
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
-<!-- 네이버 로그인 -->
-<script
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
-	charset="utf-8"></script>
-<script
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
-	charset="utf-8"></script>
-<!--  카카오 로그인-->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script type="text/javascript">
-	function naverLogin() {
-		var naverLogin = new naver.LoginWithNaverId({
-			clientId : "gOu7UJfHmcwmD8ic4Ar5",
-			callbackUrl : "http://localhost:8085/root/member/naverCallback",
-			isPopup : false, /* 팝업을 통한 연동처리 여부 */
-			loginButton : {
-				color : "green",
-				type : 3,
-				height : 60
-			}
-		/* 로그인 버튼의 타입을 지정 */
-		});
-		naverLogin.init();
-	}
-</script>
-
+<title>HNTRIP 회원정보 찾기</title>
 </head>
 <body>
     <div class="tm-container">
@@ -97,57 +67,29 @@
                     </nav>
                 </div>
             </div>
-            
-            
-            
-                   <!-- api 스크립트 -->
-            
-        <%
-		String clientId2 = "ba90b94fc88f2ca04ef48f2ab43249aa";
-		String redirectURI2 = "http://localhost:8085/root/member/kakaoLogin";
-		String kakaoApiUrl = "https://kauth.kakao.com/oauth/authorize?";
-		kakaoApiUrl += "client_id=" + clientId2;
-		kakaoApiUrl += "&redirect_uri=" + redirectURI2;
-		kakaoApiUrl += "&response_type=code";
-		%>
-		<%
-		String clientId = "gOu7UJfHmcwmD8ic4Ar5";//애플리케이션 클라이언트 아이디값";
-		String redirectURI = URLEncoder.encode("http://localhost:8085/root/member/naverCallback", "UTF-8");
-		SecureRandom random = new SecureRandom();
-		String state = new BigInteger(130, random).toString();
-		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-		apiURL += "&client_id=" + clientId;
-		apiURL += "&redirect_uri=" + redirectURI;
-		apiURL += "&state=" + state;
-		session.setAttribute("state", state);
-		%>
-                        
-            <div class="tm-row">
+             <div class="tm-row">
                 <div class="tm-col-left"></div>
                 <main class="tm-col-right tm-contact-main"> <!-- Content -->
                     <section class="tm-content tm-contact">
-                        <h2 class="mb-4 tm-content-title">LOGIN</h2>
-                        <p class="mb-85">아직 회원가입 하지 않으셨나요?<br>HNTRIP과 여행 추억을 공유해주세요</p>
-						<form id="contact-form" action="loginCheck" method="POST">
-                            <div class="form-group mb-4">
-                                <input type="text" name="id" class="form-control" placeholder="Input ID" required="" />
-                            </div>
-                            <div class="form-group mb-4">
-                                <input type="password" name="pwd" class="form-control" placeholder="Input PASSWORD" required="" />
-                            </div>
-								<input type="checkbox" name="autoLogin">&nbsp;&nbsp;Auto Login                            
-                            <div class="text-right">
-                            	<a style="padding-top:15px; padding-right : 50px; color:white; font-family: 'Jeju Gothic', sans-serif;" href="${contextPath}/member/findInfo">아이디 / 비밀번호 찾기</a>
-                                <button type="submit" class="btn btn-big btn-primary">LOGIN</button><br><br>
-                            		<a href="<%=kakaoApiUrl%>"> 
-									<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222" /></a>
-                            		<a href="<%=apiURL%>">
-									<img height="50" width="222" src="https://static.nid.naver.com/oauth/big_g.PNG" /></a>
-                            </div>    
-                            
-                        </form>
-						
-                    </section>
+						<div align="center">
+							<h2 class="mb-4 tm-content-title">아이디 / 비밀번호 찾기</h2>
+							<form id="find_form" action="findMemberInfo" method="post">
+								<table style="width : 660px;">
+									<tr>
+										<td class="tbtr">이메일 주소</td>
+										<td>
+											<input class="tb-in" style="width: 250px;" type="text" name="email" id="email" placeholder="가입했던 이메일 주소 입력">
+										</td>
+								</table>
+								<br>
+								<input class="tb-btn" type="submit" value="이메일 발송">&nbsp;&nbsp;&nbsp;&nbsp;
+								<input class="tb-btn" type="button"
+									onclick="location.href='${contextPath}/index'" value="취소">
+							</form>
+							<br>
+							<a class="mb-85" style="color:white;" href="${contextPath}/member/changePwd">비밀번호를 찾고 계신가요?</a>
+						</div>
+					</section>
                 </main>
             </div>
         </div>        
@@ -176,7 +118,7 @@
     </div>
 
 
-     <script src="${contextPath }/resources/js/jquery-3.4.1.min.js"></script>
+    <script src="${contextPath }/resources/js/jquery-3.4.1.min.js"></script>
     <script src="${contextPath }/resources/js/bootstrap.min.js"></script>
     <script src="${contextPath }/resources/js/jquery.backstretch.min.js"></script>
     <script src="${contextPath }/resources/js/templatemo-script.js"></script>
