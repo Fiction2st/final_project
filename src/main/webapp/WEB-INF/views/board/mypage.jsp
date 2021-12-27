@@ -13,8 +13,7 @@
 	margin: 0; padding: 0; text-decoration: none !important;
 }
 header {
-	width: 100%;
-	height: 20%;
+	padding-left: 40px;
 }
 .wrap {
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -23,6 +22,7 @@ header {
 	justify-content: center; /* 좌우 기준 중앙정렬 */
 	align-items: center; /* 위아래 기준 중앙정렬 */
 	min-height: 110vh;
+	background:black;
 }
 .swiper {
 	width: 1200px;
@@ -270,7 +270,7 @@ function follow(){
 </head>
 <body>
 <header>
-<c:import url="../default/header.jsp" />
+<jsp:include page="../default/header.jsp"/>
 </header>
 <div class="wrap">
 	<div class="swiper">
@@ -339,7 +339,7 @@ function follow(){
 			</c:if>
 			&nbsp;&nbsp;&nbsp;
 			<a onclick="commentList()" href="javascript:void(0)" class="btn">comment</a>&nbsp;&nbsp;&nbsp;
-			<a href="${contextPath}/board/main" class="btn">map</a>
+			<a href="${contextPath}/board/main?id=${myData.id}" class="btn">map</a>
 		</div>
 		<div class="commentWrite">
 			<input type="text" id="commentText">&nbsp;&nbsp;

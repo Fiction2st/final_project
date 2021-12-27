@@ -48,7 +48,12 @@
    
    </select>
    <select id="getMember" resultMap="board">
-      select * from board where id = #{id}
+      select * from board where id = #{id} order by savedate desc
+   </select>
+   
+   <select id="getCountry" resultMap="board">
+      select distinct country from board where id = #{id}
+   
    </select>
    
    
