@@ -9,4 +9,6 @@ public interface MemberMapper {
 	public MemberDTO getMember(String id);
 	public void keepLogin(Map<String, Object> map); 
 	public int apiLogin(MemberDTO member);
+	public MemberDTO getMemInfo(String email);
+	public int updatePwd(Map<String, Object> map);
 }

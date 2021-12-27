@@ -25,4 +25,6 @@ public interface MemberService {
 	public int apiLogin(MemberDTO dto);
 	public String getAccessToken(String authorize_code);
 	public MemberDTO getUserInfo(String access_token);
+	public MemberDTO getMemInfo(String email);
+	public int updatePwd(String id, String pwd);
 }
