@@ -8,40 +8,42 @@
 <meta charset="UTF-8">
 <title>likes</title>
 <style type="text/css">
-* {
-	margin: 0;
-}
-
+* {	margin: 0;}
 body{ 
-	backgorund:black;
+	background:black !important;
 }
 .wrap {
-	width: 100%; height: 1080px; background:black;
+	width: 100%;
 }	
-.view {
+.letter {
 	width: 980px;
-	height: 85%;
 	margin: 0 auto;
 	color: white;
 	padding: 1%;
+	padding-top: 500px;
+	text-align: center;
 }
 .grid-container {
 	display: grid;
 	grid-template-columns: 300px 300px 300px; /* 행 간격 */
 	grid-column-gap: 40px;
 	grid-row-gap: 40px;
-	/*  background-color: white; */
 	margin-top: 15%;
+}
+.view{
+	width: 980px;
+	margin: 0 auto;
+	padding: 1%;
 }
 </style>
 </head>
 <body>
 	<div class="wrap">
 		<jsp:include page="../default/header.jsp" />
+		<c:if test="${hitList.size() == 0 || hitList == null}">
+			<div class="letter">좋아요를 누른 게시물이 없습니다.</div>
+		</c:if>
 		<div class="view">
-			<c:if test="${hitList.size() == 0 || hitList == null}">
-					좋아요를 누른 게시물이 없습니다.
-				</c:if>
 			<div class="grid-container">
 				<c:forEach var="hitImg" items="${hitList}">
 					<a href="${contextPath}/board/mypage?writeNo=${hitImg.writeNo}"><img

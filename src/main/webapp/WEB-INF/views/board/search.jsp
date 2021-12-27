@@ -8,20 +8,21 @@
 <head>
 <meta charset="UTF-8">
 <title>SEARCH</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 *{margin: 0;}
-body{backgorund:black;}
-.wrap {
-	width: 100%; height: 1080px; background: black;
+body{ 
+	background:black !important;
 }
-.view {
+.wrap {
+	width: 100%;
+}	
+.letter {
 	width: 980px;
-	height: 85%;
-	padding: 1%;
 	margin: 0 auto;
 	color: white;
+	padding: 1%;
+	padding-top: 500px;
+	text-align: center;
 }
 .grid-container {
 	display: grid;
@@ -30,23 +31,30 @@ body{backgorund:black;}
 	grid-row-gap: 40px;
 	margin-top: 15%;
 }
+.view{
+	width: 980px;
+	margin: 0 auto;
+	padding: 1%;
+}
 </style>
 </head>
 <body>
 	<div class="wrap">
 		<jsp:include page="../default/header.jsp" />
-		<div class="view">		
-				<c:if test="${filelist.size() == 0 || filelist == null}">
-					검색 결과가 없습니다.
-				</c:if>
-				<div class="grid-container">
-					<c:forEach var="dto" items="${filelist }">
-						<a href="${contextPath}/board/mypage?writeNo=${dto.writeNo}"><img width="300" height="300"
-							src="${contextPath}/board/download?fileName=${dto.fileName}">
-						</a>
-					</c:forEach>
-				</div>
+		<c:if test="${filelist.size() == 0 || filelist == null}">
+			<div class="letter">검색 결과가 없습니다.</div>
+		</c:if>
+		<div class="view">
+			<div class="grid-container">
+				<c:forEach var="dto" items="${filelist }">
+					<a href="${contextPath}/board/mypage?writeNo=${dto.writeNo}"><img
+						width="300" height="300"
+						src="${contextPath}/board/download?fileName=${dto.fileName}">
+					</a>
+				</c:forEach>
 			</div>
 		</div>
+	</div>
+
 </body>
 </html>

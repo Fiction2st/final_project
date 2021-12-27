@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      </select>
      
    <select id="getMyImg" resultMap="file">
-      select * from file_name where write_no = #{writeNo}
+      select * from file_name where write_no = #{writeNo} order by file_name desc
    </select>
    <select id="hitMyImg" resultMap="file">
       select * from file_name where write_no in
