@@ -71,7 +71,6 @@
          document.getElementById('id_text').innerHTML = "영문,숫자를 혼합하여 입력해주세요."
          return false;
       }else{
-         console.log("통과");
          document.getElementById('id_text').innerHTML ="";
          return true;
       }
@@ -91,7 +90,6 @@
          document.getElementById('pwd_text').innerHTML = "영문,숫자,특수문자를 혼합하여 입력해주세요."
          return false;
       }else{
-         console.log("통과");
          document.getElementById('pwd_text').innerHTML ="";
          return true;
       }
@@ -131,8 +129,6 @@
    function chkCode(){
       var c1 = reg_form.code_check.value;
       var c2 = $("#code").val()
-      console.log(c1)
-      console.log(c2)
       if(c1 != c2){
          document.getElementById('code').style.borderColor="#FF0000";
          document.getElementById('chk_text').innerHTML = "인증번호가 틀렸습니다."
