@@ -8,60 +8,47 @@
 <meta charset="UTF-8">
 <title>likes</title>
 <style type="text/css">
-* {
-	margin: 0;
+* {	margin: 0;}
+body{ 
+	background:black !important;
 }
-
 .wrap {
 	width: 100%;
-}
-
-header {
-	width: 100%;
-	height: 20%;
-}
-.section1{
-	width:55%;
-	height:20%;
-	color: white;
-	margin-top: 80px;
-	margin-left: 11px;
-}
-.view {
-	width: 55%;
-	height: 85%;
+}	
+.letter {
+	width: 980px;
 	margin: 0 auto;
-	padding: 1%;
 	color: white;
+	padding: 1%;
+	padding-top: 500px;
+	text-align: center;
 }
-
 .grid-container {
 	display: grid;
-	grid-template-columns: 150px 150px 150px 150px 150px; /* 행 간격 */
-	grid-column-gap: 10px;
-	grid-row-gap: 10px;
-	/*  background-color: white; */
-	padding: 10px;
+	grid-template-columns: 300px 300px 300px; /* 행 간격 */
+	grid-column-gap: 40px;
+	grid-row-gap: 40px;
+	margin-top: 15%;
+}
+.view{
+	width: 980px;
+	margin: 0 auto;
+	padding: 1%;
 }
 </style>
 </head>
 <body>
-	<div id="wrap">
-		<header>
-			<c:import url="../default/header.jsp" />
-		</header>
+	<div class="wrap">
+		<jsp:include page="../default/header.jsp" />
+		<c:if test="${hitList.size() == 0 || hitList == null}">
+			<div class="letter">좋아요를 누른 게시물이 없습니다.</div>
+		</c:if>
 		<div class="view">
-			<div class="section1">
-				<h1>좋아요 목록</h1>
-			</div>
-			<c:if test="${hitList.size() == 0 || hitList == null}">
-					좋아요를 누른 게시물이 없습니다.
-				</c:if>
 			<div class="grid-container">
 				<c:forEach var="hitImg" items="${hitList}">
 					<a href="${contextPath}/board/mypage?writeNo=${hitImg.writeNo}"><img
 						src="${contextPath}/board/download?fileName=${hitImg.fileName}"
-						width="150" height="150"></a>
+						width="300" height="300"></a>
 				</c:forEach>
 			</div>
 		</div>

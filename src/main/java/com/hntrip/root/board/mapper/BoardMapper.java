@@ -16,4 +16,6 @@ public interface BoardMapper {
    public void insert(BoardDTO board);
    public int getwriteNo(String id);
    public List<BoardDTO> getMember(String id);
+   public List<BoardDTO> getCountry(String id);
+   
 }

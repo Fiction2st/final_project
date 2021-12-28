@@ -24,16 +24,28 @@ import com.hntrip.root.hit.service.HitService;
 @Controller
 @RequestMapping("board")
 
-public class BoardController {
+public class BoardController implements MemberSessionName {
    @Autowired BoardService bs;
    @Autowired FileService fs;
    @Autowired HitService hs;
    @Autowired FollowService fws;
+   
+   @GetMapping("test")
+   public String test() {
+      return "board/test";
+   }
 
+   @GetMapping("testregister")
+   public String testregister() {
+      return "board/testregister";
+   }
+   
    @GetMapping("main")
-   public String main() {
+   public String main(String id, Model model ) {
+       bs.getMember(id, model);
       return "board/main";
    }
+   
    @GetMapping("register")
    public String register() {
       return "/board/register";
@@ -48,12 +60,13 @@ public class BoardController {
    
    
    
+   
    @PostMapping("registerSave")
    public String registerSave(MultipartHttpServletRequest mul,
          HttpServletRequest request) {
       bs.registerSave(mul, request);
       
-      return "redirect:/board/register";
+      return "redirect:/board/main";
    }
    @GetMapping("mypage")
    public String mypage(Model model, @RequestParam int writeNo, HttpSession session) {

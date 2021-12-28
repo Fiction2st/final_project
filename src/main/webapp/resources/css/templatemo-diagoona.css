@@ -198,35 +198,35 @@ hr { border-top: 1px solid white; }
 table {border-collapse : separate; border-spacing : 0 10px;}
 .tbtr { font-size : 1.0rem; margin-bottom: 15px; font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif; width : 120px;}
 .tb-in{
-	font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif;
-	background-color : #212121;
-	color : #F6F6F6;
-	width : 180px;
-	height : 40px;
-	border-top : none;
-	border-left : none;
-	border-right : none;
-	border-bottom : 3px solid #F6F6F6;}
+   font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif;
+   background-color : #212121;
+   color : #F6F6F6;
+   width : 180px;
+   height : 40px;
+   border-top : none;
+   border-left : none;
+   border-right : none;
+   border-bottom : 3px solid #F6F6F6;}
 .tb-pwd{
-	font-family : sans-serif;
-	background-color : #212121;
-	color : #F6F6F6;
-	width : 180px;
-	height : 40px;
-	border-top : none;
-	border-left : none;
-	border-right : none;
-	border-bottom : 3px solid #F6F6F6;
+   font-family : sans-serif;
+   background-color : #212121;
+   color : #F6F6F6;
+   width : 180px;
+   height : 40px;
+   border-top : none;
+   border-left : none;
+   border-right : none;
+   border-bottom : 3px solid #F6F6F6;
 }
 .tb-btn {
-	font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif;
-	font-size: 0.8rem;
-	color : white;
-	background-color: #212121;
-	height : 40px;
+   font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif;
+   font-size: 0.8rem;
+   color : white;
+   background-color: #212121;
+   height : 40px;
 }
 .tb-chk{
-	width : 160px;
+   width : 160px;
 }
 /* Contact */
 .form-control,
