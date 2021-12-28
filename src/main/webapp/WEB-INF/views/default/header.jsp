@@ -44,7 +44,7 @@ span {
    margin-top: 10px;
    color: white;
    font-size: 12pt;
-   padding-left: 400px;
+   padding-left: 300px;
 }
 form { 
    display: flex;

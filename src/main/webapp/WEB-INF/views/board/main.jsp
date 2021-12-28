@@ -207,7 +207,6 @@
 .font{
  font-family: cursive;
 }
-.li_first { padding-left: 50px; }
 </style>
 <script type="text/javascript">
    //파일 이미지 미리보기
@@ -277,9 +276,7 @@
 </script>
 </head>
 <body>
-<header>
    <jsp:include page="../default/header.jsp" />
-</header>   
    <div class="empty"></div>
    <div class ="wrap-container">
 
