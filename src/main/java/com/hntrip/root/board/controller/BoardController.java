@@ -51,26 +51,15 @@ public class BoardController implements MemberSessionName {
       return "/board/register";
    }
    
-   @GetMapping("info")
-   public String info( Model model) {
-      String id = "jjj";
-      bs.getMember(id, model);
-      return "/board/info";
-   }
-   
-   
-   
-   
    @PostMapping("registerSave")
    public String registerSave(MultipartHttpServletRequest mul,
          HttpServletRequest request) {
       bs.registerSave(mul, request);
       
-      return "redirect:/board/main";
+      return "redirect:/board/main?id="+mul.getParameter("id");
    }
    @GetMapping("mypage")
    public String mypage(Model model, @RequestParam int writeNo, HttpSession session) {
-      //글번호, 나중에 param으로 받기
       bs.getMyData(model, writeNo);
       fs.getMyImg(model, writeNo);
       hs.getMyHit(model, writeNo, session);
@@ -81,7 +70,6 @@ public class BoardController implements MemberSessionName {
    @ResponseBody
    public String upHit(@RequestParam int writeNo,HttpSession session) {
       System.out.println("Hit");
-      //아이디는 후에 받기
       hs.addMyHit(writeNo,(String)session.getAttribute(MemberSessionName.LOGIN));
       return bs.upHit(writeNo)+"";
    }

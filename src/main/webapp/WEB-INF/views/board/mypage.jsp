@@ -12,9 +12,6 @@
 *{
 	margin: 0; padding: 0; text-decoration: none !important;
 }
-header {
-	padding-left: 40px;
-}
 .wrap {
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-size: 14px;
@@ -114,6 +111,7 @@ a.fbtn:hover {
 a.onfollow {
 	color: white !important; background: gray;
 }
+.li_first { padding-left: 50px; }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -166,7 +164,7 @@ function commentList(){
 		type : "GET",
 		dataType : "json",
 		success : function(reply) {
-			//console.log(reply)
+			console.log(reply)
 			let html = ""
 			reply.forEach(function(data) {
 				html += "<tr><td>" + data.id + "</td>";
@@ -201,7 +199,6 @@ function commentAdd(){
 	$.ajax({
 		url : "replyAdd", type : "POST",
 		data : JSON.stringify(form),
-		dataType : 'json',
 		contentType : "application/json; charset=utf-8",
 		success : function(result){
 			console.log(result);
@@ -247,10 +244,10 @@ function follow(){
 			url : url,
 			type : "POST",
 			data : JSON.stringify(form),
-			dataType : 'json',
 			contentType : "application/json; charset=utf-8",
 			success : function(result){
 				console.log("ajax follow 성공")
+				console.log(result)
 				if(result == true){
 					if(url == "delFollow"){
 						alert(fid+'님을 팔로우 취소하셨습니다.')
@@ -269,9 +266,7 @@ function follow(){
 </script>
 </head>
 <body>
-<header>
 <jsp:include page="../default/header.jsp"/>
-</header>
 <div class="wrap">
 	<div class="swiper">
 		<div class="swiper-wrapper">
