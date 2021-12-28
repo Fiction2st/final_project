@@ -101,7 +101,7 @@ public class BoardServiceImpl implements BoardService{
          
          model.addAttribute("info", bm.getMember(id));
          model.addAttribute("country",bm.getCountry(id));
-         System.out.println("id : " + id);
+         //System.out.println("id : " + id);
          //List<BoardDTO> list = bm.getMember(id);
          //System.out.println(list.size());
       }
