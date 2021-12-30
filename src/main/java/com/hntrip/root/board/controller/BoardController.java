@@ -92,7 +92,7 @@ public class BoardController implements MemberSessionName {
          else if(key.equals("city")) {
             bs.searchByCity(word, model);
          }
-         else if(key.equals("hit")) {
+         else if(key.equals("title")) {
             bs.searchByTitle(word, model);
          }
          return "board/search";
