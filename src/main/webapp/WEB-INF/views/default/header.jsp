@@ -9,6 +9,7 @@
 <title></title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
+<!--
 * {
    margin: 0; text-decoration: none !important;
 }
@@ -40,7 +41,7 @@ nav ul li a {
    color: white;
    font-size: 12pt;
 }
-span {
+.spanmain {
    margin-top: 10px;
    color: white;
    font-size: 12pt;
@@ -50,7 +51,7 @@ form {
    display: flex;
    margin-top: 8px;
  }
-
+-->
 </style>
 </head>
 <body>
@@ -114,7 +115,7 @@ form {
             <ul>
                <li><c:choose>
                      <c:when test="${loginUser != null }">
-                        <span>${loginUser }님 환영합니다</span>
+                        <span class="spanmain">${loginUser }님 환영합니다</span>
                      </c:when>
                   </c:choose></li>
             </ul>

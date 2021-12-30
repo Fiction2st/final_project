@@ -30,6 +30,7 @@
    margin: 0 auto;
    /*padding: 0 0 112px 0;  헤더에서 떨어지는 부분 */
 }
+
 /* ---풍선------------------------------------------ */
 .country-wrap {
    padding: 7px;
@@ -39,33 +40,41 @@
    color: #ffff;
    position: absolute;
 }
+
 .country-wrap>h2, .country-wrap>h3 {
    margin: 0;
 }
+
 .country-korea {
    top: 187px;
    left: 1200px;
 }
+
 .country-czech {
    top: 122px;
    left: 545px;
 }
+
 .country-australia {
    top: 558px;
    left: 1245px;
 }
+
 .country-brazil {
    top: 507px;
    left: 248px;
 }
+
 .city {
    padding: 0 0 10px 5px;
 }
+
 .date {
    list-style: none;
    margin: 0 auto;
    padding-left: 0;
 }
+
 .date1 {
    width: 100%;
    padding: 5px 0;
@@ -75,48 +84,58 @@
    background-color: #444444;
    transition: all 0.9s, color 0.3s;
 }
+
 .date1 a {
    width: 100%;
    color: white;
    display: inline-block;
 }
+
 .date1 a:hover {
    color: white;
    text-decoration: none;
 }
+
 .date1:hover {
    box-shadow: 0 80px 0 0 rgba(224, 224, 224, 0.5) inset, 0 -80px 0 0
       rgba(0, 0, 0, 0.8) inset;
    color: #000;
 }
+
 /* ---선---------------------------------- */
 #Layer_100, #Layer_200, #Layer_300, #Layer_400 {
    width: 100px;
    height: 136px;
    position: absolute;
 }
+
 #Layer_100 {
    top: 189px;
    left: 1355px;
 }
+
 #Layer_200 {
    top: 122px;
    left: 700px;
 }
+
 #Layer_300 {
    top: 560px;
    left: 1400px;
 }
+
 #Layer_400 {
    top: 510px;
    left: 404px;
 }
+
 /* ---버튼----------------------------------- */
 .rbtn {
    position: absolute;
    right: 70px;
    bottom: 50px;
 }
+
 .main-btn{
    font-family : 'Jeju Gothic', 'Noto Sans KR', 'Nanum Gothic', sans-serif;
 }
@@ -124,6 +143,7 @@
    color : #F15F5F;
    font-style: bold;
 }
+
 /* modal */
 #modal_wrap { /*회색 화면*/
    display: none;
@@ -138,6 +158,8 @@
    background-color: rgba(0, 0, 0, 0.4);
    transition-duration: 2s;
 }
+
+
 .preview {
    width: 100px;
    height: 100px;
@@ -147,9 +169,12 @@
    height : 50px;
    
 }
+
+
 </style>
 <script type="text/javascript">
    //파일 이미지 미리보기
+
    function readURL(input) {
       var inputFile = $('#fileUpload');
       var files = inputFile[0].files //파일에 대한 정보
@@ -165,6 +190,7 @@
                html += "<img class='preview' src='"+e.target.result+"'/>"
                //console.log(e.target.result)
                //html += "<img class='preview' alt='dlalwl'/>"
+
                //$('.preview').attr('src', e.target.result);
                //console.log(html)
                $('#imgPreview').html(html)
@@ -172,6 +198,7 @@
          }
       }
    }
+
    function chk_form() {
       var title = $("#title").val()
       var city = $("#city").val()
@@ -182,9 +209,11 @@
          alert('제목을 입력해주세요')
          return false;
       } else if (city == "" || city == undefined || city == null) {
+
          console.log('도시 : ' + city)
          $("#city").focus();
          alert('도시를 입력해주세요')
+
          return false;
       } else if (content == "" || content == undefined || content == null) {
          console.log('내용 : ' + content)
@@ -198,11 +227,15 @@
       }
    }
    function modalopen() {
-	   
+      
       $('#modal_wrap').show();
+
    }
+
    function modalclose() {
+
       $('#modal_wrap').hide();
+
    }
 </script>
 </head>
@@ -262,9 +295,12 @@
    stroke-linejoin: round;
    stroke-width: 2px;
 }
+
 .cls-101 {
    fill: #c1282e;
 }
+
+
 </style>
       </defs>
       <line class="cls-100" x1="1" y1="1" x2="54.55" y2="86.59" />
@@ -300,6 +336,7 @@
    stroke-linejoin: round;
    stroke-width: 2px;
 }
+
 .cls-201 {
    fill: #c1282e;
 }
@@ -339,9 +376,11 @@
    stroke-linejoin: round;
    stroke-width: 2px;
 }
+
 .cls-301 {
    fill: #c1282e;
 }
+
 </style>
 
       </defs>
@@ -381,6 +420,7 @@
    stroke-linejoin: round;
    stroke-width: 2px;
 }
+
 .cls-401 {
    fill: #c1282e;
 }
@@ -448,6 +488,7 @@ display: table !important;
   top: 10%;
   left:38%;
 }
+
 .form-group {
   margin-bottom: 1rem;
   width: 100%;
@@ -511,8 +552,8 @@ font-size: 12px; width: 160px;
                     
                     <div class="form-group">
                     <label>등록일</label>
-                  <input class="form-control1" type="text" name="saveDate" id="datepicker" class="datepicker">
-                     <script type="text/javascript" class="datepicker">
+                  <input class="form-control1" type="text" name="saveDate" id="datepicker">
+                     <script type="text/javascript">
                         $(function() {
                            //모든 datepicker에 대한 공통 옵션 설정
                            $.datepicker
@@ -558,9 +599,11 @@ font-size: 12px; width: 160px;
                                     ,
                                     maxDate : "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
                                  });
+
                            //input을 datepicker로 선언
                            $("#datepicker").datepicker();
                            $("#datepicker2").datepicker();
+
                            //From의 초기값을 오늘 날짜로 설정
                            $('#datepicker').datepicker('setDate',
                                  'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
