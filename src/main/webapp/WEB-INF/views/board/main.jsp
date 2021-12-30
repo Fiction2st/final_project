@@ -14,8 +14,8 @@
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+<link rel="stylesheet"
+   href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style type="text/css">
 .wrap-container{
    height: 100vh;
@@ -227,7 +227,7 @@
       }
    }
    function modalopen() {
-	   
+      
       $('#modal_wrap').show();
 
    }
@@ -254,6 +254,15 @@
 
   </a></h3>
 </div>
+   
+   
+   
+   
+   
+   
+   
+   
+
 
    <!-- ----풍선----------------------------->
 
@@ -290,6 +299,8 @@
 .cls-101 {
    fill: #c1282e;
 }
+
+
 </style>
       </defs>
       <line class="cls-100" x1="1" y1="1" x2="54.55" y2="86.59" />
@@ -511,7 +522,9 @@ display: table !important;
   border-radius: 0.35rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
+.datepicker{
+font-size: 12px; width: 160px; 
+}
  
    </style>
    
@@ -539,8 +552,7 @@ display: table !important;
                     
                     <div class="form-group">
                     <label>등록일</label>
-                  <input class="form-control1" type="text" name="saveDate" id="datepicker" class="datepicker">
-                  
+                  <input class="form-control1" type="text" name="saveDate" id="datepicker">
                      <script type="text/javascript">
                         $(function() {
                            //모든 datepicker에 대한 공통 옵션 설정
