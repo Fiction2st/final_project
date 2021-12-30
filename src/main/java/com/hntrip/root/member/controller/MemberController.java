@@ -111,7 +111,7 @@ public class MemberController implements MemberSessionName{
 	          dto.setId(naverId); dto.setEmail(email);
 	          ms.apiLogin(dto);
 	          session.setAttribute(LOGIN, naverId);
-	    	  return "/index";
+	    	  return "/board/main";
 	      }
 	    } catch (Exception e) {
 	    	System.out.println("정보가져오기 실패!!");
