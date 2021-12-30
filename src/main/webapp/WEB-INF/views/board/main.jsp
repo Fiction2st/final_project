@@ -46,23 +46,23 @@
 }
 
 .country-korea {
-   top: 198px;
-   left: 1253px;
+   top: 187px;
+   left: 1200px;
 }
 
 .country-czech {
    top: 122px;
-   left: 604px;
+   left: 545px;
 }
 
 .country-australia {
-   top: 596px;
-   left: 1329px;
+   top: 558px;
+   left: 1245px;
 }
 
 .country-brazil {
    top: 507px;
-   left: 271px;
+   left: 248px;
 }
 
 .city {
@@ -110,18 +110,18 @@
 }
 
 #Layer_100 {
-   top: 200px;
-   left: 1385px;
+   top: 189px;
+   left: 1355px;
 }
 
 #Layer_200 {
    top: 122px;
-   left: 736px;
+   left: 700px;
 }
 
 #Layer_300 {
-   top: 596px;
-   left: 1461px;
+   top: 560px;
+   left: 1400px;
 }
 
 #Layer_400 {
@@ -132,7 +132,7 @@
 /* ---버튼----------------------------------- */
 .rbtn {
    position: absolute;
-   right: 100px;
+   right: 70px;
    bottom: 50px;
 }
 
@@ -156,45 +156,9 @@
    width: 100%;
    height: 100%;
    background-color: rgba(0, 0, 0, 0.4);
-   position: fixed;
+   transition-duration: 2s;
 }
 
-#first {
-   position: fixed;
-   z-index: 20;
-   margin: 0 auto;
-   top: 150px;
-   left: 0;
-   right: 0;
-   background-color: #514d4b;
-   height: 500px;
-   width: 500px;
-}
-
-#reg_form {
-   width: 500px;
-   height: 500px;
-   margin: 0 auto;
-   background: #514d4b;
-   text-align: center;
-   color: black;
-}
-
-.modal_form input, #content {
-   border: 2px solid #fff;
-   border-radius: 5px;
-   text-align: center;
-}
-
-.modal_form input[type=submit] {
-   width: 80px;
-   height: 30px;
-   border-radius: 10px;
-}
-
-#fileUpload {
-   border: none;
-}
 
 .preview {
    width: 100px;
@@ -203,10 +167,10 @@
 }
 .empty{
    height : 50px;
+   
 }
-.font{
- font-family: cursive;
-}
+
+
 </style>
 <script type="text/javascript">
    //파일 이미지 미리보기
@@ -242,19 +206,19 @@
       if (title == "" || title == undefined || title == null) {
          console.log('타이틀값 : ' + title)
          $("#title").focus();
-         alert('제목입력해')
+         alert('제목을 입력해주세요')
          return false;
       } else if (city == "" || city == undefined || city == null) {
 
          console.log('도시 : ' + city)
          $("#city").focus();
-         alert('도시입력해')
+         alert('도시를 입력해주세요')
 
          return false;
       } else if (content == "" || content == undefined || content == null) {
          console.log('내용 : ' + content)
          $("#content").focus();
-         alert('내용입력해')
+         alert('내용을 입력해주세요')
          return false;
       } else {
          reg_form.submit();
@@ -263,7 +227,7 @@
       }
    }
    function modalopen() {
-
+	   
       $('#modal_wrap').show();
 
    }
@@ -281,9 +245,21 @@
    <div class ="wrap-container">
 
    <!--등록하기 ------------------------------------------------->
-   <div class="rbtn">
-      <a class="main-btn2" style="color:white; font-size : 25px;" onclick="modalopen()">등록하기</a>
-   </div>
+   <div class="rbtn" >
+  <h3><a  style="color:#CC3D3D; cursor: pointer;" onclick="modalopen()">
+  
+ <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+</svg>
+
+  </a></h3>
+</div>
+   
+   
+   
+   
+   
+   
    
    
 
@@ -293,10 +269,12 @@
    <c:forEach items="${ country }" var="country">
       <c:if test="${ country.country=='korea' }">
          <div class="country-wrap country-korea" id="korea">
+      
             <h2>KOREA</h2>
             <!--  
       <div class="city" >South Korea</div>
       -->
+        <br>
             <ul class="date">
                <c:forEach items="${info }" var="info">
                   <c:if test="${info.country == 'korea' }">
@@ -336,6 +314,7 @@
             <!-- 
       <div class="city">Czech</div>
        -->
+        <br>
             <ul class="date">
                <c:forEach items="${info }" var="info">
                   <c:if test="${info.country == 'czech' }">
@@ -375,6 +354,7 @@
             <!-- 
       <div class="city">Australia</div>
        -->
+        <br>
             <ul class="date">
                <c:forEach items="${info}" var="info">
                   <c:if test="${info.country == 'australia'}">
@@ -398,7 +378,9 @@
 .cls-301 {
    fill: #c1282e;
 }
+
 </style>
+
       </defs>
       <line class="cls-300" x1="1" y1="1" x2="54.55" y2="86.59" />
       <circle class="cls-301" cx="55.46" cy="88.1" r="1.81" />
@@ -415,7 +397,7 @@
             <!--  
       <div class="city">Brazil</div>
       -->
-
+ <br>
             <ul class="date">
                <c:forEach items="${info }" var="info">
                   <c:if test="${info.country == 'brazil' }">
@@ -440,6 +422,9 @@
 .cls-401 {
    fill: #c1282e;
 }
+#reg_form{
+display: table !important;
+}
 </style>
       </defs>
       <line class="cls-400" x1="1" y1="1" x2="54.55" y2="86.59" />
@@ -447,25 +432,126 @@
    </svg>
       </c:if>
    </c:forEach>
-   <div id="modal_wrap">
-      <div id="first">
-         <form id="reg_form" name="register" method="post"
-            action="${contextPath}/board/registerSave"
-            enctype="multipart/form-data">
-            <table class="modal_form">
-               <tr>
-                  <th>작성자</th>
-                  <td><input type="text" name="id" value=${loginUser } readonly />
-                  </td>
-               </tr>
-               <tr>
-                  <th>제목</th>
-                  <td><input type="text" name="title" id="title" /></td>
-               </tr>
-               <tr>
-                  <th>등록일</th>
-                  <td><input type="text" name="saveDate" id="datepicker">
-                     <script type="text/javascript">
+   <style type="text/css">
+   label{
+   font-size: 1.8rem;
+   }
+   textarea{
+   display: block;
+  width: 400px !important;
+  height: 100px;
+  padding: 0.375rem 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #6e707e;
+  background-color: #fff;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.35rem;
+   }
+   .form-control1  {
+  display: block;
+  width: 400px !important;
+  height: 30px;
+  padding: 0.375rem 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #6e707e;
+  background-color: #fff;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.35rem;
+  
+}
+.card {
+  position: fixed;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: 0.35rem;
+  width:460px;
+  height: 80%;
+  z-index:30;
+  overflow: auto;
+    margin: 0 auto;
+  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 400;
+  line-height: 1.5;
+  color: #858796;
+  text-align: left;
+  background-color: #fff;
+  padding: 30px;
+  top: 10%;
+  left:38%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.btn-sm, .btn-group-sm > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #4e73df;
+  border-color: #4e73df;
+}
+.btn1 {
+  display: inline-block;
+  font-weight: 400;
+  color: #858796;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 2rem;
+  line-height: 1.5;
+  border-radius: 0.35rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.datepicker{
+font-size: 12px; width: 160px; 
+}
+ 
+   </style>
+   
+   
+    <div id="modal_wrap">
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h4 class="m-0 font-weight-bold text-primary" style="font-weight: 900;">등록</h4>
+            </div>
+            <div class="card-body">
+                 <form id="reg_form" name="register" action="${contextPath }/board/registerSave" method="post" enctype="multipart/form-data">
+                 <div class="form-group">
+                       <label>ID</label>
+                       <input class="form-control1" name="id" value=${loginUser } readonly>
+                    </div>
+                    <div class="form-group">
+                       <label>제목</label>
+                       <input class="form-control1" name="title" id="title">
+                    </div>
+                    <div class="form-group">
+                       <label>내용</label>
+                       <textarea rows="22" name="content" id="content"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                    <label>등록일</label>
+                  <input class="form-control1" type="text" name="saveDate" id="datepicker" class="datepicker">
+                     <script type="text/javascript" class="datepicker">
                         $(function() {
                            //모든 datepicker에 대한 공통 옵션 설정
                            $.datepicker
@@ -523,50 +609,48 @@
                            $('#datepicker2').datepicker('setDate',
                                  '+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
                         });
-                     </script></td>
-               </tr>
-               <tr>
-                  <th>나라</th>
-                  <td><select name="country" style="width: 80px; height: 30px;">
+                     </script>
+               </div>
+               <div class="form-group">
+                       <label>나라</label>
+                        <select name="country" class="form-control1">
                         <option value="none">=== 선택 ===</option>
                         <option value="korea" selected>한국</option>
                         <option value="australia">호주</option>
                         <option value="czech">체코</option>
                         <option value="brazil">브라질</option>
-                  </select></td>
-               </tr>
-               <tr>
-                  <th>도시</th>
-                  <td><input type="text" name="city" id="city" /></td>
-               </tr>
-               <tr>
-                  <th>내용</th>
-                  <td><textarea id="content" name="content" cols="22"></textarea>
-                  </td>
-               </tr>
-               <tr>
-                  <!-- 파일을 선택하면 onchange가 작동하고 input 자체(파일에 대한 값)를 readURL에 넘겨주겟다. -->
-                  <th><input type="file" name="file_name" id="fileUpload"
-                     onchange="readURL(this);" multiple /></th>
-                  <td id="imgPreview"><img class="preview" src="#" width="100"
-                     height="100" alt="선택된 이미지가 없습니다" /></td>
-               </tr>
-               <tr>
-                  <td colspan="2"><input onclick="chk_form()" type="button"
-                     value="글쓰기" />
-                     <input onclick="modalclose()" type="button"
-                     value="취소"/>
-                     
-                     
-                     </td>
-                  
+                  </select>
+                    </div>
+                       <div class="form-group">
+                       <label>도시</label>
+                       <input class="form-control1" name="city" id="city">
+                    </div>
+                    
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary" style="font-weight: 900;">사진 등록</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group uploadDiv">
+                        <input type="file" name="file_name" id="fileUpload" onchange="readURL(this)" multiple>
+                    </div>
+                    <div class="uploadResult">
+                        <ul>
+                        <li id="imgPreview"><img class="preview" src="#" width="100" height="100" alt="선택된 이미지가 없습니다"/></li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <input type="button" onclick="chk_form()" class="btn1 btn-primary btn-sm" value="글쓰기"/>
+                    <button type="reset" class="btn1 btn-primary btn-sm" >취소</button>
+                    <input type="button" onclick="modalclose()" class="btn1 btn-primary btn-sm" value="닫기" style="float: right"/>
+                 </form>
+            </div>
+          </div>
 
-               
-               </tr>
-            </table>
-         </form>
-      </div>
-   </div>
+        </div>
+   
+  
  </div>
 </body>
 </html>
