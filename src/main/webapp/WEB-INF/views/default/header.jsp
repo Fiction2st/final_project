@@ -93,7 +93,7 @@ form {
                            <select name="key" class="form-control" id="sel1">
                               <option value="country">국가별</option>
                               <option value="city">도시별</option>
-                              <option value="hit">제목별</option>
+                              <option value="title">제목별</option>
                            </select>
 
                            <div class="input-group">

@@ -520,9 +520,7 @@ display: table !important;
   border-radius: 0.35rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.datepicker{
-font-size: 12px; width: 160px; 
-}
+
  
    </style>
    

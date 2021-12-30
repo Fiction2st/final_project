@@ -45,7 +45,7 @@
 								<c:choose>
 									<c:when test="${loginUser != null }">
 										<li class="nav-item">
-											<a class="nav-link tm-nav-link" href="${contextPath }/board/main">MY PAGE</a>
+											<a class="nav-link tm-nav-link" href="${contextPath }/board/main?id=${loginUser}">MY PAGE</a>
 										</li>
 									</c:when>
 									<c:otherwise></c:otherwise>
