@@ -14,8 +14,8 @@
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
-<link rel="stylesheet"
-   href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <style type="text/css">
 .wrap-container{
    height: 100vh;
@@ -254,15 +254,6 @@
 
   </a></h3>
 </div>
-   
-   
-   
-   
-   
-   
-   
-   
-
 
    <!-- ----풍선----------------------------->
 
@@ -549,7 +540,8 @@ display: table !important;
                     <div class="form-group">
                     <label>등록일</label>
                   <input class="form-control1" type="text" name="saveDate" id="datepicker" class="datepicker">
-                     <script type="text/javascript" class="datepicker">
+                  
+                     <script type="text/javascript">
                         $(function() {
                            //모든 datepicker에 대한 공통 옵션 설정
                            $.datepicker
